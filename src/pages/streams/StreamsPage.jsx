@@ -1,116 +1,16 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { motion } from "framer-motion";
-import { RiSearchLine, RiFilter2Line, RiArrowLeftSLine, RiArrowRightSLine } from "react-icons/ri";
+import { RiSearchLine, RiFilter2Line, RiArrowLeftSLine, RiArrowRightSLine, RiLiveLine } from "react-icons/ri";
 import { Input } from "@/components/ui/input";
 import StreamCard from "@/components/shared/StreamCard";
+import { FaRegCalendarAlt } from "react-icons/fa";
+import { BiVideoRecording } from "react-icons/bi";
+import { GoGift } from "react-icons/go";
+import { MOCK_STREAMS } from "./data/streams";
+import { EmptyContent, Empty, EmptyHeader, EmptyMedia, EmptyDescription, EmptyTitle } from "@/components/ui/empty";
+import { Button } from "@/components/ui/button";
+import { CiStreamOff } from "react-icons/ci";
 
-// Mock 8 streams matching the specified status distribution: 2 live, 3 scheduled, 3 ended
-const MOCK_STREAMS = [
-  {
-    uuid: "live-stream-1",
-    title: "Navakarana Yoga Vinyasa: Strength and Alignment",
-    description: "An intensive live session focused on developing core stability, strength, and correct anatomical alignment. Perfect for intermediate practitioners looking to deepen their practice.",
-    category: "Vinyasa",
-    thumbnail_url: null,
-    status: "live",
-    is_free: true,
-    price: "0.00",
-    scheduled_at: new Date(Date.now() - 3600000).toISOString(), // started 1 hour ago
-    purchases_count: 42,
-    teacher: { uuid: "teacher-arjun", name: "Arjun Mehta" }
-  },
-  {
-    uuid: "live-stream-2",
-    title: "Pranayama & Breathwork Foundation",
-    description: "Deep dive into breathwork techniques. Learn how to control energy flow, quiet the mind, and increase vital lung capacity through guided breath sequences.",
-    category: "Pranayama",
-    thumbnail_url: null,
-    status: "live",
-    is_free: false,
-    price: "15.00",
-    scheduled_at: new Date(Date.now() - 1800000).toISOString(), // started 30 mins ago
-    purchases_count: 18,
-    teacher: { uuid: "teacher-sarah", name: "Sarah Connor" }
-  },
-  {
-    uuid: "scheduled-stream-1",
-    title: "Hatha Flow for Flexibility & Relaxation",
-    description: "A calming Hatha flow session to stretch out muscles, improve range of motion, and release daily accumulated tension.",
-    category: "Hatha Flow",
-    thumbnail_url: null,
-    status: "scheduled",
-    is_free: false,
-    price: "12.50",
-    scheduled_at: new Date(Date.now() + 172800000).toISOString(), // 2 days from now
-    purchases_count: 9,
-    teacher: { uuid: "teacher-arjun", name: "Arjun Mehta" }
-  },
-  {
-    uuid: "scheduled-stream-2",
-    title: "Ashtanga Yoga Primary Series Introduction",
-    description: "Introduction to the sequence and structure of Ashtanga primary series. Focus on Bandhas, Drishti, and Ujjayi breath.",
-    category: "Ashtanga",
-    thumbnail_url: null,
-    status: "scheduled",
-    is_free: true,
-    price: "0.00",
-    scheduled_at: new Date(Date.now() + 86400000).toISOString(), // 1 day from now
-    purchases_count: 132,
-    teacher: { uuid: "teacher-david", name: "David Swenson" }
-  },
-  {
-    uuid: "scheduled-stream-3",
-    title: "Morning Sun Salutations Intensive",
-    description: "Start your day with high energy! 108 rounds of dynamic Sun Salutations to wake up the body and energize your soul.",
-    category: "Vinyasa",
-    thumbnail_url: null,
-    status: "scheduled",
-    is_free: false,
-    price: "10.00",
-    scheduled_at: new Date(Date.now() + 3600000 * 5).toISOString(), // 5 hours from now
-    purchases_count: 24,
-    teacher: { uuid: "teacher-sarah", name: "Sarah Connor" }
-  },
-  {
-    uuid: "ended-stream-1",
-    title: "Yin Yoga: Deep Joint Opening & Mindfulness",
-    description: "Recorded restorative session holding passive poses for longer periods to target connective tissues and cultivate mindfulness.",
-    category: "Yin Yoga",
-    thumbnail_url: null,
-    status: "ended",
-    is_free: false,
-    price: "18.00",
-    scheduled_at: new Date(Date.now() - 86400000 * 2).toISOString(), // 2 days ago
-    purchases_count: 56,
-    teacher: { uuid: "teacher-arjun", name: "Arjun Mehta" }
-  },
-  {
-    uuid: "ended-stream-2",
-    title: "Chakra Meditation for Inner Balance",
-    description: "Guidance on focusing energy along the spine, clearing blockages, and aligning the 7 chakras for peace and clarity.",
-    category: "Meditation",
-    thumbnail_url: null,
-    status: "ended",
-    is_free: true,
-    price: "0.00",
-    scheduled_at: new Date(Date.now() - 86400000 * 5).toISOString(), // 5 days ago
-    purchases_count: 245,
-    teacher: { uuid: "teacher-david", name: "David Swenson" }
-  },
-  {
-    uuid: "ended-stream-3",
-    title: "Core Power Flow Masterclass",
-    description: "A fast-paced core strengthening class combining yoga postures with calisthenics elements for high energy burn.",
-    category: "Power Yoga",
-    thumbnail_url: null,
-    status: "ended",
-    is_free: false,
-    price: "20.00",
-    scheduled_at: new Date(Date.now() - 86400000 * 10).toISOString(), // 10 days ago
-    purchases_count: 89,
-    teacher: { uuid: "teacher-sarah", name: "Sarah Connor" }
-  }
-];
 
 export default function StreamsPage() {
   const [search, setSearch] = useState("");
@@ -163,13 +63,13 @@ export default function StreamsPage() {
   };
 
   return (
-    <div className="bg-stone-50 min-h-screen py-10 px-4 md:px-8 max-w-7xl mx-auto">
+    <div className="bg-background min-h-screen py-30 px-4 md:px-8 max-w-7xl mx-auto">
       {/* Page Header */}
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-8 border-b border-stone-200/60 pb-6">
         <div>
-          <span className="text-brand font-bold text-xs uppercase tracking-widest">Explore Classes</span>
+          <span className="text-brand font-bold text-xs uppercase tracking-widest">Explore Streams</span>
           <h1 className="text-3xl md:text-4xl font-extrabold text-stone-900 mt-1">Live & Recorded Yoga Sessions</h1>
-          <p className="text-stone-500 mt-2">Browse the directory of guided classes, breathwork sessions, and meditation practices hosted by expert instructors.</p>
+          <p className="text-stone-500 mt-2">Browse the directory of guided stream, breathwork sessions, and meditation practices hosted by expert instructors.</p>
         </div>
 
         {/* Search Input */}
@@ -177,7 +77,7 @@ export default function StreamsPage() {
           <RiSearchLine className="absolute left-3 top-1/2 -translate-y-1/2 text-stone-400 size-4" />
           <Input
             type="text"
-            placeholder="Search class or instructor..."
+            placeholder="Search stream or instructor..."
             value={search}
             onChange={(e) => {
               setSearch(e.target.value);
@@ -194,20 +94,21 @@ export default function StreamsPage() {
           <RiFilter2Line /> Filters:
         </span>
         {[
-          { id: "all", label: "All Classes" },
-          { id: "live", label: "🔴 Live Now" },
-          { id: "scheduled", label: "📅 Scheduled" },
-          { id: "ended", label: "🎥 Ended & Recordings" },
-          { id: "free", label: "🎁 Free Classes" }
+          { id: "all", label: "All Streams" },
+          { id: "live", label: "Live Now", icon: <RiLiveLine /> },
+          { id: "scheduled", label: "Scheduled", icon: <FaRegCalendarAlt /> },
+          { id: "ended", label: "Ended & Recordings", icon: <BiVideoRecording /> },
+          { id: "free", label: "Free Streams", icon: <GoGift /> }
         ].map((filter) => (
           <button
             key={filter.id}
             onClick={() => handleFilterChange(filter.id)}
-            className={`px-4 py-1.5 rounded-full text-xs font-semibold transition-all whitespace-nowrap cursor-pointer border ${activeFilter === filter.id
-                ? "bg-stone-900 border-stone-900 text-white shadow-sm"
-                : "bg-white border-stone-200 text-stone-600 hover:text-stone-900 hover:border-stone-300"
+            className={`px-4 py-1.5 rounded-full text-xs font-semibold transition-all whitespace-nowrap cursor-pointer flex items-center gap-1 border ${activeFilter === filter.id
+              ? "bg-stone-900 border-stone-900 text-white shadow-sm"
+              : "bg-white border-stone-200 text-stone-600 hover:text-stone-900 hover:border-stone-300"
               }`}
           >
+            {filter.icon}
             {filter.label}
           </button>
         ))}
@@ -233,11 +134,20 @@ export default function StreamsPage() {
           ))}
         </motion.div>
       ) : (
-        <div className="bg-white border border-stone-100 rounded-3xl p-16 text-center shadow-sm">
-          <div className="text-stone-300 text-5xl mb-4">🤷</div>
-          <h3 className="text-lg font-bold text-stone-800">No classes found</h3>
-          <p className="text-stone-400 text-sm mt-1">Try adjusting your filters or search term.</p>
-        </div>
+        <Empty className=" border-dashed border border-muted-foreground rounded-3xl py-16 mt-10">
+          <EmptyHeader>
+            <EmptyMedia>
+              <CiStreamOff className="size-12 text-stone-300 mx-auto" stroke="50" />
+            </EmptyMedia>
+            <EmptyTitle>No Streams found</EmptyTitle>
+            <EmptyDescription>Try adjusting your filters or search term.</EmptyDescription>
+          </EmptyHeader>
+          <EmptyContent>
+            <Button variant="outline" onClick={() => { setSearch(""); setActiveFilter("all"); }} className="mt-6">
+              Clear Filters
+            </Button>
+          </EmptyContent>
+        </Empty>
       )}
 
       {/* Pagination */}

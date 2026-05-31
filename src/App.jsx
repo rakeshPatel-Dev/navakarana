@@ -1,7 +1,4 @@
 import { Routes, Route, Navigate } from "react-router-dom";
-import { AuthProvider } from "@/context/AuthContext";
-import { AdminAuthProvider } from "@/context/AdminAuthContext";
-import { ThemeProvider } from "@/context/ThemeContext";
 
 // Layouts
 import Header from "@/components/layout/header/Header";
@@ -82,159 +79,150 @@ function AuthLayout({ children }) {
 
 export default function App() {
   return (
-    <ThemeProvider>
-      {/* <AdminAuthProvider> */}
-      <AuthProvider>
-        <Routes>
-          {/* ── Public ─────────────────────────────────── */}
-          <Route
-            path="/"
-            element={
-              <PublicLayout>
-                <LandingPage />
-              </PublicLayout>
-            }
-          />
-          <Route
-            path="/channel/:slug"
-            element={
-              <PublicLayout>
-                <ChannelPage />
-              </PublicLayout>
-            }
-          />
-          <Route
-            path="/mat/info"
-            element={
-              <PublicLayout>
-                <MatInfoPage />
-              </PublicLayout>
-            }
-          />
+    <Routes>
+      {/* ── Public ─────────────────────────────────── */}
+      <Route
+        path="/"
+        element={
+          <PublicLayout>
+            <LandingPage />
+          </PublicLayout>
+        }
+      />
+      <Route
+        path="/channel/:slug"
+        element={
+          <PublicLayout>
+            <ChannelPage />
+          </PublicLayout>
+        }
+      />
+      <Route
+        path="/mat/info"
+        element={
+          <PublicLayout>
+            <MatInfoPage />
+          </PublicLayout>
+        }
+      />
+      <Route
+        path="/streams"
+        element={
+          <PublicLayout>
+            <StreamsPage />
+          </PublicLayout>
+        }
+      />
+      <Route
+        path="/streams/:uuid"
+        element={
+          <PublicLayout>
+            <StreamDetailPage />
+          </PublicLayout>
+        }
+      />
 
-          {/* ── Auth ───────────────────────────────────── */}
-          <Route path="/login" element={<AuthLayout><LoginPage /></AuthLayout>} />
-          <Route path="/register" element={<AuthLayout><RegisterPage /></AuthLayout>} />
+      {/* ── Auth ───────────────────────────────────── */}
+      <Route path="/login" element={<AuthLayout><LoginPage /></AuthLayout>} />
+      <Route path="/register" element={<AuthLayout><RegisterPage /></AuthLayout>} />
 
-          {/* ── Student-facing (NonTeacherRoute) ────────── */}
-          <Route
-            path="/streams"
-            element={
-              <PublicLayout>
-                <NonTeacherRoute>
-                  <StreamsPage />
-                </NonTeacherRoute>
-              </PublicLayout>
-            }
-          />
-          <Route
-            path="/streams/:uuid"
-            element={
-              <PublicLayout>
-                <NonTeacherRoute>
-                  <StreamDetailPage />
-                </NonTeacherRoute>
-              </PublicLayout>
-            }
-          />
-          <Route
-            path="/watch/:uuid"
-            element={
-              <AuthRequired>
-                <NonTeacherRoute>
-                  <WatchPage />
-                </NonTeacherRoute>
-              </AuthRequired>
-            }
-          />
+      {/* ── Student-facing (NonTeacherRoute) ────────── */}
 
-          {/* ── Student private ─────────────────────────── */}
-          <Route
-            path="/my-library"
-            element={
-              <PublicLayout>
-                <AuthRequired>
-                  <MyLibraryPage />
-                </AuthRequired>
-              </PublicLayout>
-            }
-          />
-          <Route
-            path="/notifications"
-            element={
-              <PublicLayout>
-                <AuthRequired>
-                  <NotificationsPage />
-                </AuthRequired>
-              </PublicLayout>
-            }
-          />
-          <Route
-            path="/mat/order"
-            element={
-              <PublicLayout>
-                <StudentRoute>
-                  <MatOrderPage />
-                </StudentRoute>
-              </PublicLayout>
-            }
-          />
-          <Route
-            path="/mat/checkout/success"
-            element={
-              <PublicLayout>
-                <StudentRoute>
-                  <MatCheckoutSuccessPage />
-                </StudentRoute>
-              </PublicLayout>
-            }
-          />
-          <Route
-            path="/mat/orders"
-            element={
-              <PublicLayout>
-                <StudentRoute>
-                  <MatOrdersPage />
-                </StudentRoute>
-              </PublicLayout>
-            }
-          />
+      <Route
+        path="/watch/:uuid"
+        element={
+          <AuthRequired>
+            <NonTeacherRoute>
+              <WatchPage />
+            </NonTeacherRoute>
+          </AuthRequired>
+        }
+      />
 
-          {/* ── Teacher Portal ───────────────────────────── */}
-          <Route
-            path="/teacher/unlock"
-            element={
-              <TeacherRoute>
-                <TeacherUnlockPage />
-              </TeacherRoute>
-            }
-          />
-          <Route path="/teacher" element={<TeacherUnlockedRoute><TeacherLayout /></TeacherUnlockedRoute>}>
-            <Route index element={<Navigate to="/teacher/dashboard" replace />} />
-            <Route path="dashboard" element={<TeacherDashboardPage />} />
-            <Route path="streams" element={<TeacherStreamsPage />} />
-            <Route path="channel" element={<TeacherChannelPage />} />
-          </Route>
+      {/* ── Student private ─────────────────────────── */}
+      <Route
+        path="/my-library"
+        element={
+          <PublicLayout>
+            <AuthRequired>
+              <MyLibraryPage />
+            </AuthRequired>
+          </PublicLayout>
+        }
+      />
+      <Route
+        path="/notifications"
+        element={
+          <PublicLayout>
+            <AuthRequired>
+              <NotificationsPage />
+            </AuthRequired>
+          </PublicLayout>
+        }
+      />
+      <Route
+        path="/mat/order"
+        element={
+          <PublicLayout>
+            <StudentRoute>
+              <MatOrderPage />
+            </StudentRoute>
+          </PublicLayout>
+        }
+      />
+      <Route
+        path="/mat/checkout/success"
+        element={
+          <PublicLayout>
+            <StudentRoute>
+              <MatCheckoutSuccessPage />
+            </StudentRoute>
+          </PublicLayout>
+        }
+      />
+      <Route
+        path="/mat/orders"
+        element={
+          <PublicLayout>
+            <StudentRoute>
+              <MatOrdersPage />
+            </StudentRoute>
+          </PublicLayout>
+        }
+      />
 
-          {/* ── Admin Portal ─────────────────────────────── */}
-          <Route path="/admin/login" element={<AuthLayout><AdminLoginPage /></AuthLayout>} />
-          <Route path="/admin" element={<AdminRoute><AdminLayout /></AdminRoute>}>
-            <Route index element={<Navigate to="/admin/dashboard" replace />} />
-            <Route path="dashboard" element={<AdminDashboardPage />} />
-            <Route path="teachers" element={<AdminOnlyRoute><AdminTeachersPage /></AdminOnlyRoute>} />
-            <Route path="users" element={<AdminOnlyRoute><AdminUsersPage /></AdminOnlyRoute>} />
-            <Route path="streams" element={<AdminOnlyRoute><AdminStreamsPage /></AdminOnlyRoute>} />
-            <Route path="settings" element={<AdminOnlyRoute><AdminSettingsPage /></AdminOnlyRoute>} />
-          </Route>
-          <Route path="/mat/dashboard" element={<AdminRoute><AdminLayout /></AdminRoute>}>
-            <Route index element={<MatDashboardPage />} />
-          </Route>
+      {/* ── Teacher Portal ───────────────────────────── */}
+      <Route
+        path="/teacher/unlock"
+        element={
+          <TeacherRoute>
+            <TeacherUnlockPage />
+          </TeacherRoute>
+        }
+      />
+      <Route path="/teacher" element={<TeacherUnlockedRoute><TeacherLayout /></TeacherUnlockedRoute>}>
+        <Route index element={<Navigate to="/teacher/dashboard" replace />} />
+        <Route path="dashboard" element={<TeacherDashboardPage />} />
+        <Route path="streams" element={<TeacherStreamsPage />} />
+        <Route path="channel" element={<TeacherChannelPage />} />
+      </Route>
 
-          {/* ── Fallback ──────────────────────────────────── */}
-          <Route path="*" element={<Navigate to="/" replace />} />
-        </Routes>
-      </AuthProvider>
-      {/* </AdminAuthProvider> */}
-    </ThemeProvider>
+      {/* ── Admin Portal ─────────────────────────────── */}
+      <Route path="/admin/login" element={<AuthLayout><AdminLoginPage /></AuthLayout>} />
+      <Route path="/admin" element={<AdminRoute><AdminLayout /></AdminRoute>}>
+        <Route index element={<Navigate to="/admin/dashboard" replace />} />
+        <Route path="dashboard" element={<AdminDashboardPage />} />
+        <Route path="teachers" element={<AdminOnlyRoute><AdminTeachersPage /></AdminOnlyRoute>} />
+        <Route path="users" element={<AdminOnlyRoute><AdminUsersPage /></AdminOnlyRoute>} />
+        <Route path="streams" element={<AdminOnlyRoute><AdminStreamsPage /></AdminOnlyRoute>} />
+        <Route path="settings" element={<AdminOnlyRoute><AdminSettingsPage /></AdminOnlyRoute>} />
+      </Route>
+      <Route path="/mat/dashboard" element={<AdminRoute><AdminLayout /></AdminRoute>}>
+        <Route index element={<MatDashboardPage />} />
+      </Route>
+
+      {/* ── Fallback ──────────────────────────────────── */}
+      <Route path="*" element={<Navigate to="/" replace />} />
+    </Routes>
   );
 }

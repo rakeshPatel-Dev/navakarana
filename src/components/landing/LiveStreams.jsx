@@ -10,7 +10,7 @@ const streams = [
     viewers: 892,
     duration: "1h 20m",
     live: true,
-    gradient: "from-emerald-500 to-teal-700",
+    thumbnail_url: "https://imgs.search.brave.com/xMfgtevcHgWJtHuUcF8onEiEn9E84Mi0HFNSbRvfShw/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9tZWRp/YS5pc3RvY2twaG90/by5jb20vaWQvMTQ1/OTUzODI3MS9waG90/by95b2dhLWV4ZXJj/aXNlLWFuZC1tZWRp/dGF0aW9uLWF0LXRo/ZS1iZWFjaC13aXRo/LWEtd29tYW4taW4t/cHJheWVyLXBvc2l0/aW9uLWZvci16ZW4t/Y2FsbS1hbmQuanBn/P3M9NjEyeDYxMiZ3/PTAmaz0yMCZjPUN0/ZHZfT3V0bnJVSDlS/N2xVSEdpZk5mRC1u/QVBaUzJsWWNKTHNn/Zjl0RlE9",
   },
   {
     id: 2,
@@ -20,7 +20,7 @@ const streams = [
     viewers: 654,
     duration: "55m",
     live: true,
-    gradient: "from-stone-700 to-emerald-600",
+    thumbnail_url: "https://imgs.search.brave.com/SAMK9c_fe7YBelt6hDa8WEGjfBEUskqS3iwUuy7ti48/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9jZG4u/cGl4YWJheS5jb20v/cGhvdG8vMjAxOS8x/Mi8zMS8xNi8wNi95/b2dhLTQ3MzIyMDlf/NjQwLmpwZw"
   },
   {
     id: 3,
@@ -30,7 +30,7 @@ const streams = [
     viewers: 441,
     duration: "30m",
     live: false,
-    gradient: "from-amber-500 to-orange-700",
+    thumbnail_url: "https://imgs.search.brave.com/GGHzzFUa8TXm7wlFZY7g-nerSoHX8ze1GLzlej-BXcE/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9tZWRp/YS5pc3RvY2twaG90/by5jb20vaWQvMTMx/NzA3NzkwMC9waG90/by9zZW5pb3Itd29t/YW4tZG9pbmcteW9n/YS1leGVyY2lzZS1h/dC1iZWFjaC1jYWxt/LWFuZC1tZWRpdGF0/aW9uLWNvbmNlcHQu/anBnP3M9NjEyeDYx/MiZ3PTAmaz0yMCZj/PThzMkdzOE90TGZn/MUZ6N1hlZ1JOb2Vm/THV4REhLdVdIR0pR/MEI1N3hFVGc9"
   },
   {
     id: 4,
@@ -40,7 +40,7 @@ const streams = [
     viewers: 1203,
     duration: "2h",
     live: true,
-    gradient: "from-rose-500 to-amber-600",
+    thumbnail_url: "https://imgs.search.brave.com/dZ_BbkcZftJbDzPbzvi2w9MzYhIzgu6DClLp2e5SJM4/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9tZWRp/YS5pc3RvY2twaG90/by5jb20vaWQvNjE5/MDg4OTE4L3Bob3Rv/L3lvdW5nLXdvbWFu/LXByYWN0aWNpbmct/eW9nYS1pbi11cmJh/bi1sb2Z0LXVwd2Fy/ZC1mYWNpbmctZG9n/LmpwZz9zPTYxMng2/MTImdz0wJms9MjAm/Yz1HRUxUVHdkaDkw/S2ZpQmM2cnRval9U/TnRDSm81SUxlTkxr/WlU2eTBtUTBRPQ"
   },
 ];
 
@@ -97,7 +97,7 @@ export default function LiveStreams() {
               className="group rounded-3xl overflow-hidden bg-white border border-stone-100 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-200 cursor-pointer"
             >
               {/* Thumbnail */}
-              <div className={`relative h-36 bg-gradient-to-br ${stream.gradient} flex items-center justify-center`}>
+              <div className={`relative h-36 ${stream.thumbnail_url ? "bg-cover" : `bg-linear-to-br ${stream.gradient}`}`} style={{ backgroundImage: stream.thumbnail_url ? `url(${stream.thumbnail_url})` : undefined }}>
                 <RiPlayCircleLine className="text-white/40 text-5xl group-hover:text-white/60 transition-colors" />
                 {stream.live && (
                   <span className="absolute top-3 left-3 flex items-center gap-1.5 bg-brand text-white text-[10px] font-bold px-2.5 py-1 rounded-full">

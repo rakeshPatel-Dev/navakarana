@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
-import { RiLiveLine, RiTimeLine, RiUserLine, RiLockLine, RiPlayCircleLine } from "react-icons/ri";
-import { Badge } from "@/components/ui/badge";
+import { RiUserLine, RiLockLine, RiPlayCircleLine } from "react-icons/ri";
 import StreamCountdown from "./StreamCountdown";
 
 const statusConfig = {
@@ -35,7 +34,7 @@ export default function StreamCard({ stream, index = 0 }) {
       className="group rounded-3xl overflow-hidden bg-white border border-stone-100 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-200 flex flex-col"
     >
       {/* Thumbnail */}
-      <div className={`relative h-36 ${thumbnail_url ? "" : `bg-gradient-to-br ${gradient}`} flex items-center justify-center overflow-hidden`}>
+      <div className={`relative h-36 ${thumbnail_url ? "" : `bg-linear-to-br ${gradient}`} flex items-center justify-center overflow-hidden`}>
         {thumbnail_url ? (
           <img src={thumbnail_url} alt={title} className="w-full h-full object-cover" />
         ) : (

@@ -3,6 +3,7 @@ import Stats from "./Stats";
 import Features from "./Features";
 import LiveStreams from "./LiveStreams";
 import HowItWorks from "./HowItWorks";
+import Teachers from "./Teachers";
 import Testimonials from "./Testimonials";
 import CTA from "./CTA";
 
@@ -14,6 +15,7 @@ export default function LandingPage() {
       <Features />
       <LiveStreams />
       <HowItWorks />
+      <Teachers />
       <Testimonials />
       <CTA />
     </main>
