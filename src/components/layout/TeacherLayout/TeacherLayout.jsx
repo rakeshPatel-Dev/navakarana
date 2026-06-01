@@ -1,10 +1,11 @@
-import { NavLink, Outlet, useNavigate } from "react-router-dom";
+import {  Outlet, useNavigate } from "react-router-dom";
 import { useAuth } from "@/context/AuthContext";
 import {
-  RiLiveLine, RiDashboardLine, RiVideoLine,
-  RiUserLine, RiLogoutBoxLine, RiMenuLine, RiCloseLine,
+   RiDashboardLine, RiVideoLine,
+  RiUserLine,  RiMenuLine, 
 } from "react-icons/ri";
 import { useState } from "react";
+import { Sidebar } from "./components/TeacherSidebar";
 
 const navItems = [
   { to: "/teacher/dashboard", icon: RiDashboardLine, label: "Dashboard" },
@@ -22,60 +23,13 @@ export default function TeacherLayout() {
     navigate("/login");
   }
 
-  const Sidebar = () => (
-    <aside className="w-64 min-h-screen bg-white border-r border-stone-100 flex flex-col">
-      {/* Logo */}
-      <div className="px-6 py-5 border-b border-stone-100 flex items-center gap-2.5">
-        <span className="w-8 h-8 rounded-xl bg-brand text-white flex items-center justify-center">
-          <RiLiveLine size={16} />
-        </span>
-        <span className="font-bold text-stone-900">Navakarana</span>
-      </div>
-
-      {/* Role badge */}
-      <div className="px-6 py-4 border-b border-stone-50">
-        <p className="text-xs text-stone-400 mb-0.5">Signed in as</p>
-        <p className="text-sm font-semibold text-stone-900 truncate">{user?.name}</p>
-        <span className="text-[10px] font-semibold text-brand uppercase tracking-wide">Teacher</span>
-      </div>
-
-      {/* Nav */}
-      <nav className="flex-1 px-3 py-4 flex flex-col gap-1">
-        {navItems.map(({ to, icon: Icon, label }) => (
-          <NavLink
-            key={to}
-            to={to}
-            className={({ isActive }) =>
-              `flex items-center gap-3 px-3 py-2.5 rounded-2xl text-sm font-medium transition-colors ${isActive
-                ? "bg-brand/10 text-brand"
-                : "text-stone-600 hover:bg-stone-50 hover:text-stone-900"
-              }`
-            }
-          >
-            <Icon size={17} />
-            {label}
-          </NavLink>
-        ))}
-      </nav>
-
-      {/* Logout */}
-      <div className="p-4 border-t border-stone-100">
-        <button
-          onClick={handleLogout}
-          className="w-full flex items-center gap-2.5 px-3 py-2.5 rounded-2xl text-sm font-medium text-stone-500 hover:bg-red-50 hover:text-brand transition-colors"
-        >
-          <RiLogoutBoxLine size={17} />
-          Log Out
-        </button>
-      </div>
-    </aside>
-  );
+ 
 
   return (
     <div className="flex min-h-screen bg-stone-50">
       {/* Desktop sidebar */}
       <div className="hidden md:flex">
-        <Sidebar />
+        <Sidebar user={user} navItems={navItems} handleLogout={handleLogout} />
       </div>
 
       {/* Mobile sidebar overlay */}
@@ -83,7 +37,7 @@ export default function TeacherLayout() {
         <div className="fixed inset-0 z-40 flex md:hidden">
           <div className="absolute inset-0 bg-black/40" onClick={() => setSidebarOpen(false)} />
           <div className="relative z-50">
-            <Sidebar />
+            <Sidebar user={user} navItems={navItems} handleLogout={handleLogout} />
           </div>
         </div>
       )}
@@ -106,3 +60,4 @@ export default function TeacherLayout() {
     </div>
   );
 }
+

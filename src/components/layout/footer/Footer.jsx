@@ -1,4 +1,4 @@
-import { RiLiveLine, RiTwitterXLine, RiInstagramLine, RiLinkedinBoxLine, RiYoutubeLine } from "react-icons/ri";
+import {  RiTwitterXLine, RiInstagramLine, RiLinkedinBoxLine, RiYoutubeLine } from "react-icons/ri";
 import { Link } from "react-router-dom";
 
 const links = {
@@ -16,9 +16,7 @@ export default function Footer() {
           {/* Brand */}
           <div className="col-span-2">
             <Link to="/" className="flex items-center gap-2.5 mb-4">
-              <span className="flex items-center justify-center w-8 h-8 rounded-xl bg-brand text-white">
-                <RiLiveLine className="text-base" />
-              </span>
+              <img src="/navakarana_logo.png" alt="Navakarana Logo" className="w-8 h-8" />
               <span className="text-white font-bold text-base">Navakarana</span>
             </Link>
             <p className="text-sm leading-relaxed mb-5 max-w-xs">
@@ -65,7 +63,7 @@ export default function Footer() {
         <div className="pt-8 flex flex-col sm:flex-row justify-between items-center gap-3 text-xs">
           <p>© 2025 Navakarana. All rights reserved.</p>
           <p>
-            Made for yogis everywhere
+            Made with ❤️ by <a className="hover:underline decoration-2 underline-offset-2 text-blue-800" href="https://letslearn.asia" target="_blank" rel="noreferrer nopener">LetsLearn IT, Nepal </a>
           </p>
         </div>
       </div>

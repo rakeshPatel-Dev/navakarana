@@ -1,7 +1,7 @@
-import { NavLink, Outlet, useNavigate } from "react-router-dom";
+import { Link, NavLink, Outlet, useNavigate } from "react-router-dom";
 import { useAdminAuth } from "@/context/AdminAuthContext";
 import {
-  RiLiveLine, RiDashboardLine, RiGroupLine,
+   RiDashboardLine, RiGroupLine,
   RiVideoLine, RiSettings3Line, RiLogoutBoxLine,
   RiRulerLine, RiUserLine,
 } from "react-icons/ri";
@@ -32,12 +32,12 @@ export default function AdminLayout() {
     <div className="flex min-h-screen bg-stone-50">
       <aside className="w-64 min-h-screen bg-stone-900 flex flex-col">
         {/* Logo */}
+        <Link title="Go to home" to="/">
         <div className="px-6 py-5 flex items-center gap-2.5 border-b border-stone-700">
-          <span className="w-8 h-8 rounded-xl bg-brand text-white flex items-center justify-center">
-            <RiLiveLine size={16} />
-          </span>
+         <img src="/navakarana_logo.png" alt="Navakarana Logo" className="w-8 h-8" />
           <span className="font-bold text-white">Admin Panel</span>
         </div>
+        </Link>
 
         {/* Role badge */}
         <div className="px-6 py-4 border-b border-stone-700/50">
