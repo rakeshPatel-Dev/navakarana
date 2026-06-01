@@ -39,7 +39,7 @@ export default function NotificationsPage() {
   };
 
   return (
-    <div className="bg-stone-50 min-h-screen py-10 px-4 md:px-8">
+    <div className="bg-stone-50 min-h-screen py-30 px-4 md:px-8">
       <div className="max-w-4xl mx-auto space-y-6">
         {/* Header */}
         <div className="border-b border-stone-200/60 pb-5">
@@ -61,7 +61,7 @@ export default function NotificationsPage() {
         {/* List of Teachers */}
         <div className="bg-white border border-stone-100 rounded-3xl p-6 shadow-sm space-y-4">
           <h3 className="font-extrabold text-stone-900 text-sm uppercase tracking-wider mb-2">Followed Channels</h3>
-          
+
           {followedTeachers.length > 0 ? (
             <div className="divide-y divide-stone-100">
               {followedTeachers.map((teacher, idx) => {
@@ -70,7 +70,7 @@ export default function NotificationsPage() {
                   .map((n) => n[0])
                   .join("")
                   .toUpperCase();
-                  
+
                 return (
                   <motion.div
                     key={teacher.uuid}
@@ -88,7 +88,7 @@ export default function NotificationsPage() {
                       <div className="space-y-0.5">
                         <div className="flex items-center gap-1.5">
                           <span className="font-bold text-stone-850 text-sm">{teacher.name}</span>
-                          <Link 
+                          <Link
                             to={`/channel/${teacher.slug}`}
                             className="text-stone-400 hover:text-brand transition-colors cursor-pointer"
                           >
@@ -106,14 +106,12 @@ export default function NotificationsPage() {
                       </span>
                       <button
                         onClick={() => handleToggleNotification(teacher.uuid)}
-                        className={`w-11 h-6 rounded-full transition-all relative outline-none cursor-pointer ${
-                          teacher.emailEnabled ? "bg-brand" : "bg-stone-200"
-                        }`}
-                      >
-                        <span 
-                          className={`absolute top-0.5 left-0.5 bg-white size-5 rounded-full transition-all shadow-sm ${
-                            teacher.emailEnabled ? "translate-x-5" : "translate-x-0"
+                        className={`w-11 h-6 rounded-full transition-all relative outline-none cursor-pointer ${teacher.emailEnabled ? "bg-brand" : "bg-stone-200"
                           }`}
+                      >
+                        <span
+                          className={`absolute top-0.5 left-0.5 bg-white size-5 rounded-full transition-all shadow-sm ${teacher.emailEnabled ? "translate-x-5" : "translate-x-0"
+                            }`}
                         />
                       </button>
                     </div>

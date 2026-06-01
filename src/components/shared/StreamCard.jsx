@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { RiUserLine, RiLockLine, RiPlayCircleLine } from "react-icons/ri";
 import StreamCountdown from "./StreamCountdown";
+import { GoGift } from "react-icons/go";
 
 const statusConfig = {
   live: { label: "LIVE", className: "bg-brand text-white" },
@@ -31,7 +32,7 @@ export default function StreamCard({ stream, index = 0 }) {
   return (
     <Link
       to={`/streams/${uuid}`}
-      className="group rounded-3xl overflow-hidden bg-white border border-stone-100 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-200 flex flex-col"
+      className="group rounded-3xl min-h-68 overflow-hidden bg-white border border-stone-100 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-200 flex flex-col"
     >
       {/* Thumbnail */}
       <div className={`relative h-36 ${thumbnail_url ? "" : `bg-linear-to-br ${gradient}`} flex items-center justify-center overflow-hidden`}>
@@ -48,21 +49,24 @@ export default function StreamCard({ stream, index = 0 }) {
         </span>
 
         {/* Price badge */}
-        <span className={`absolute top-3 right-3 flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-semibold backdrop-blur-sm ${is_free ? "bg-emerald-500/90 text-white" : "bg-black/50 text-white"}`}>
-          {is_free ? "Free" : <><RiLockLine size={9} /> ${price}</>}
+        <span className={`absolute top-3 right-3 flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-semibold backdrop-blur-sm ${is_free ? "bg-emerald-500/90 border border-emerald-500 text-white" : "bg-black/50 text-white"}`}>
+          {is_free ? <><GoGift /> Free</> : <><RiLockLine size={9} /> ${price}</>}
         </span>
       </div>
 
       {/* Body */}
       <div className="p-4 flex flex-col gap-2 flex-1">
+        <div className="flex items-center justify-between gap-2">
         {category && (
           <span className="text-[10px] font-semibold text-brand uppercase tracking-wider">{category}</span>
         )}
-        <h3 className="text-sm font-semibold text-stone-900 leading-snug line-clamp-2">{title}</h3>
-
         {status === "scheduled" && scheduled_at && (
           <StreamCountdown scheduledAt={scheduled_at} />
         )}
+        </div>
+        <h3 className="text-sm font-semibold text-stone-900 leading-snug line-clamp-2">{title}</h3>
+
+        
 
         <div className="flex items-center justify-between mt-auto pt-2 text-xs text-stone-400">
           {teacher && (

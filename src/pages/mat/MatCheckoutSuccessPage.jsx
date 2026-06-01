@@ -1,13 +1,14 @@
 import { useState, useEffect } from "react";
 import { useSearchParams, useNavigate, Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { 
-  RiCheckboxCircleLine, RiLoader4Line, RiUserLine, 
-  RiMapPinLine, RiClipboardLine, RiInboxArchiveLine 
+import {
+  RiCheckboxCircleLine, RiLoader4Line,
+  RiMapPinLine,
 } from "react-icons/ri";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { PiConfettiBold } from "react-icons/pi";
 
 export default function MatCheckoutSuccessPage() {
   const navigate = useNavigate();
@@ -79,13 +80,13 @@ export default function MatCheckoutSuccessPage() {
   if (success) {
     return (
       <div className="min-h-screen bg-stone-50 flex items-center justify-center px-4">
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           className="max-w-md w-full bg-white border border-stone-100 p-8 rounded-4xl text-center shadow-lg space-y-6"
         >
           <div className="size-16 bg-emerald-50 text-emerald-600 rounded-3xl flex items-center justify-center mx-auto text-3xl shadow-sm">
-            🎉
+            <PiConfettiBold/>
           </div>
           <div className="space-y-2">
             <h2 className="text-2xl font-black text-stone-900">Order Placed Successfully!</h2>
@@ -107,7 +108,7 @@ export default function MatCheckoutSuccessPage() {
   }
 
   return (
-    <div className="bg-stone-50 min-h-screen py-10 px-4 md:px-8">
+    <div className="bg-stone-50 min-h-screen py-20 px-4 md:px-8">
       <div className="max-w-2xl mx-auto space-y-6">
         {/* Success Banner Header */}
         <motion.div
@@ -115,14 +116,14 @@ export default function MatCheckoutSuccessPage() {
           animate={{ opacity: 1, y: 0 }}
           className="bg-emerald-600 text-white rounded-3xl p-6 md:p-8 text-center space-y-3 shadow-md relative overflow-hidden"
         >
-          <div className="absolute inset-0 bg-[radial-gradient(#ffffff0a_1px,transparent_1px)] [background-size:16px_16px] pointer-events-none" />
-          
+          <div className="absolute inset-0 bg-[radial-gradient(#ffffff0a_1px,transparent_1px)] [bg-size:16px_16px] pointer-events-none" />
+
           <div className="size-12 bg-white/10 border border-white/20 text-white flex items-center justify-center rounded-2xl mx-auto text-xl shrink-0 shadow-sm">
             <RiCheckboxCircleLine className="size-6" />
           </div>
-          
+
           <div>
-            <h1 className="text-2xl font-black">Payment Successful! 🎉</h1>
+            <h1 className="text-2xl font-black flex items-center gap-2 justify-center">Payment Successful! <PiConfettiBold/></h1>
             <p className="text-emerald-100 text-xs mt-1">Stripe Session: {sessionId}</p>
           </div>
         </motion.div>

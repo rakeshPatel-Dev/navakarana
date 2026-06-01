@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { useSearchParams, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
-import { 
-  RiRuler2Line, RiText, RiPlayLine, RiEyeLine, 
-  RiArrowRightLine, RiErrorWarningLine, RiInformationLine 
+import {
+  RiRuler2Line, RiText, RiPlayLine, RiEyeLine,
+  RiArrowRightLine, RiErrorWarningLine, RiInformationLine
 } from "react-icons/ri";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -81,7 +81,7 @@ export default function MatOrderPage() {
   const handleCheckout = (e) => {
     e.preventDefault();
     if (!validateForm()) return;
-    
+
     // Simulate redirection to Stripe Checkout
     alert("Redirecting to Stripe Checkout securely...");
     // Mock checkout success state redirection with mock session id
@@ -91,7 +91,7 @@ export default function MatOrderPage() {
   };
 
   return (
-    <div className="bg-stone-50 min-h-screen py-12 px-4 md:px-8">
+    <div className="bg-stone-50 min-h-screen py-30 px-4 md:px-8">
       <div className="max-w-4xl mx-auto space-y-8">
         {/* Header */}
         <div className="border-b border-stone-200/60 pb-6">
@@ -104,7 +104,7 @@ export default function MatOrderPage() {
 
         {/* Cancellation Notice */}
         {cancelled && (
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             className="p-4 bg-brand/5 border border-brand/20 text-brand-dark rounded-2xl flex items-start gap-3"
@@ -232,11 +232,10 @@ export default function MatOrderPage() {
                       key={style}
                       type="button"
                       onClick={() => setFline(style)}
-                      className={`h-11 font-semibold rounded-xl text-xs flex items-center justify-center border cursor-pointer transition-all ${
-                        fline === style
+                      className={`h-11 font-semibold rounded-xl text-xs flex items-center justify-center border cursor-pointer transition-all ${fline === style
                           ? "bg-stone-900 border-stone-900 text-white shadow-sm shadow-stone-900/10"
                           : "bg-stone-50/50 border-stone-200 text-stone-600 hover:text-stone-950 hover:bg-stone-100"
-                      }`}
+                        }`}
                     >
                       {style} Line Guide
                     </button>

@@ -1,7 +1,7 @@
 import { useState, useMemo } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { motion } from "framer-motion";
-import { RiUserFollowLine, RiUserUnfollowLine, RiLinkM, RiVideoChatLine, RiBroadcastLine } from "react-icons/ri";
+import { RiUserFollowLine, RiUserUnfollowLine, RiLinkM, RiVideoChatLine,  RiVerifiedBadgeLine } from "react-icons/ri";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import StreamCard from "@/components/shared/StreamCard";
@@ -108,10 +108,10 @@ const TEACHERS_DB = {
 
 export default function ChannelPage() {
   const { slug } = useParams();
-  
+
   // Try to find teacher or use Arjun Mehta as default
   const teacher = TEACHERS_DB[slug] || TEACHERS_DB["arjun-mehta"];
-  
+
   const [isFollowing, setIsFollowing] = useState(false);
   const [followerCount, setFollowerCount] = useState(teacher.followers);
   const [copied, setCopied] = useState(false);
@@ -141,11 +141,11 @@ export default function ChannelPage() {
   }, [teacher.name]);
 
   return (
-    <div className="bg-stone-50 min-h-screen py-10 px-4 md:px-8">
+    <div className="bg-stone-50 min-h-screen py-30 px-4 md:px-8">
       <div className="max-w-6xl mx-auto space-y-8">
         {/* Banner Hero Area */}
-        <div className="bg-gradient-to-r from-stone-900 via-stone-850 to-brand-dark rounded-4xl p-8 md:p-12 text-white relative overflow-hidden shadow-lg">
-          <div className="absolute inset-0 bg-[radial-gradient(#ffffff05_1px,transparent_1px)] [background-size:16px_16px] pointer-events-none" />
+        <div className="bg-linear-to-r from-stone-900 via-stone-850 to-brand-dark rounded-4xl p-8 md:p-12 text-white relative overflow-hidden shadow-lg">
+          <div className="absolute inset-0 bg-[radial-gradient(#ffffff05_1px,transparent_1px)] [bg-size:16px_16px] pointer-events-none" />
           <div className="absolute -bottom-24 -left-24 w-96 h-96 bg-brand/10 blob-shape pointer-events-none" />
 
           <div className="flex flex-col md:flex-row items-center md:items-start gap-6 md:gap-8 z-10 relative">
@@ -159,12 +159,12 @@ export default function ChannelPage() {
               <div className="flex flex-wrap justify-center md:justify-start items-center gap-3">
                 <h1 className="text-3xl font-extrabold tracking-tight">{teacher.name}</h1>
                 <Badge className="bg-brand hover:bg-brand-light text-white border-transparent px-2.5 py-0.5 rounded-md font-semibold text-xs gap-1">
-                  <RiBroadcastLine /> Certified Teacher
+                  <RiVerifiedBadgeLine /> Certified Teacher
                 </Badge>
               </div>
 
               {/* Slug Info */}
-              <button 
+              <button
                 onClick={handleCopySlug}
                 className="inline-flex items-center gap-1.5 text-stone-400 hover:text-white text-xs font-semibold bg-white/5 hover:bg-white/10 px-3 py-1 rounded-full transition-all cursor-pointer border border-white/5"
               >
@@ -195,11 +195,10 @@ export default function ChannelPage() {
             <div className="shrink-0 flex items-center gap-2 pt-4 md:pt-0">
               <Button
                 onClick={handleFollowToggle}
-                className={`px-6 h-11 font-bold rounded-xl transition-all flex items-center gap-2 cursor-pointer shadow-md ${
-                  isFollowing
-                    ? "bg-white text-stone-900 hover:bg-stone-100"
-                    : "bg-brand hover:bg-brand-light text-white shadow-brand/20"
-                }`}
+                className={`px-6 h-11 font-bold rounded-xl transition-all flex items-center gap-2 cursor-pointer shadow-md ${isFollowing
+                  ? "bg-white text-stone-900 hover:bg-stone-100"
+                  : "bg-brand hover:bg-brand-light text-white shadow-brand/20"
+                  }`}
               >
                 {isFollowing ? (
                   <>
@@ -232,7 +231,7 @@ export default function ChannelPage() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4 }}
               >
-                <StreamCard stream={{...stream, teacher: { uuid: "teacher-uuid", name: teacher.name }}} />
+                <StreamCard stream={{ ...stream, teacher: { uuid: "teacher-uuid", name: teacher.name } }} />
               </motion.div>
             ))}
           </div>

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import {
   RiUserSettingsLine, RiVideoLine, RiSave3Line,
-  RiEyeLine, RiInformationLine, RiCheckLine
+  RiEyeLine, RiCheckLine
 } from "react-icons/ri";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -145,7 +145,7 @@ export default function TeacherChannelPage() {
                 value={bio}
                 onChange={(e) => setBio(e.target.value)}
                 maxLength={2000}
-                className="bg-stone-50 border-stone-200 focus:bg-white rounded-xl min-h-[140px] text-xs leading-relaxed"
+                className="bg-stone-50 border-stone-200 focus:bg-white rounded-xl min-h-35 text-xs leading-relaxed"
               />
             </div>
 

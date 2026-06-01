@@ -4,7 +4,9 @@ import { motion } from "framer-motion";
 import {
   RiVideoLine, RiAddLine, RiEditLine, RiDeleteBin7Line,
   RiBroadcastLine, RiCloseLine, RiCameraLine, RiMicLine,
-  RiLockLine, RiLockUnlockLine, RiCalendarTodoLine, RiStopCircleLine
+  RiLockLine, RiLockUnlockLine, RiCalendarTodoLine, RiStopCircleLine,
+  RiLiveLine,
+  RiDraftLine
 } from "react-icons/ri";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -16,6 +18,9 @@ import {
   DialogTitle, DialogFooter, DialogDescription
 } from "@/components/ui/dialog";
 import DeleteConfirmModal from "@/components/shared/DeleteConfirmModal";
+import { FaRegCalendarAlt } from "react-icons/fa";
+import { BiVideoRecording } from "react-icons/bi";
+import { TbCancel } from "react-icons/tb";
 
 const INITIAL_STREAMS = [
   {
@@ -255,27 +260,32 @@ export default function TeacherStreamsPage() {
                   <td className="p-4">
                     {stream.status === "live" && (
                       <Badge className="bg-red-100 text-red-700 border-red-200 rounded-md font-bold px-2 py-0.5 animate-pulse">
-                        🔴 LIVE NOW
+                        <RiLiveLine className="w-3 h-3 mr-1" />
+                         LIVE NOW
                       </Badge>
                     )}
                     {stream.status === "scheduled" && (
                       <Badge className="bg-blue-100 text-blue-700 border-blue-200 rounded-md font-bold px-2 py-0.5">
-                        📅 UPCOMING
+                        <FaRegCalendarAlt className="w-3 h-3 mr-1" />
+                         UPCOMING
                       </Badge>
                     )}
                     {stream.status === "ended" && (
                       <Badge className="bg-stone-100 text-stone-600 border-stone-200 rounded-md font-bold px-2 py-0.5">
-                        🎥 ENDED
+                        <BiVideoRecording className="w-3 h-3 mr-1" />
+                         ENDED
                       </Badge>
                     )}
                     {stream.status === "draft" && (
                       <Badge className="bg-stone-100 text-stone-500 border-stone-200 rounded-md font-semibold px-2 py-0.5">
+                        <RiDraftLine className="w-3 h-3 mr-1" />
                         DRAFT
                       </Badge>
                     )}
                     {stream.status === "cancelled" && (
                       <Badge className="bg-amber-100 text-amber-700 border-amber-200 rounded-md font-bold px-2 py-0.5">
-                        ⚠️ CANCELLED
+                        <TbCancel className="w-3 h-3 mr-1" />
+                         CANCELLED
                       </Badge>
                     )}
                   </td>
