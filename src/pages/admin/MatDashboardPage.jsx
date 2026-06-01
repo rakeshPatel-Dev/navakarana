@@ -1,16 +1,18 @@
 import { useState } from "react";
-import { motion } from "framer-motion";
-import { 
-  RiShoppingBag3Line, RiDownloadLine, RiChatQuoteLine, 
-  RiCheckLine, RiInformationLine, RiLoader4Line 
+// import { motion } from "framer-motion";
+import {
+  RiShoppingBag3Line, RiDownloadLine, RiChatQuoteLine,
 } from "react-icons/ri";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { 
-  Dialog, DialogContent, DialogHeader, 
-  DialogTitle, DialogFooter, DialogDescription 
+import {
+  Dialog, DialogContent, DialogHeader,
+  DialogTitle, DialogFooter, DialogDescription
 } from "@/components/ui/dialog";
 import { Textarea } from "@/components/ui/textarea";
+import { Label } from "@/components/ui/label";
+import { Select, SelectGroup, SelectItem, SelectTrigger, SelectValue, SelectContent } from "@/components/ui/select";
+import { toast } from "sonner";
 
 const INITIAL_ORDERS = [
   { uuid: "mat-order-a2d9b4c7", customerName: "Jane Doe", status: "pending", createdAt: "2026-05-31T09:15:00Z", note: "Customer requested thin line borders.", measurements: "fm1: 42cm | fm5: 175cm" },
@@ -22,7 +24,7 @@ const INITIAL_ORDERS = [
 
 export default function MatDashboardPage() {
   const [orders, setOrders] = useState(INITIAL_ORDERS);
-  
+
   // Note dialog state
   const [noteOpen, setNoteOpen] = useState(false);
   const [selectedOrder, setSelectedOrder] = useState(null);
@@ -51,19 +53,33 @@ export default function MatDashboardPage() {
   };
 
   const handleDownloadSVG = (uuid) => {
-    alert(`Downloading alignment SVG vector file for order: ${uuid}`);
+    toast.info("Sorry for the inconvenience!", {
+      description: `Mat order ${uuid} is currently not available for download.`,
+    });
   };
 
   const getStatusBadge = (status) => {
     switch (status) {
       case "pending":
-        return <Badge className="bg-amber-100 text-amber-700 border-transparent font-bold">PENDING</Badge>;
+        return ({
+          name: "Pending",
+          className: "bg-yellow-100 text-yellow-700 border-transparent font-bold"
+        })
       case "in_progress":
-        return <Badge className="bg-blue-100 text-blue-700 border-transparent font-bold">IN PRODUCTION</Badge>;
+        return ({
+          name: "In Production",
+          className: "bg-blue-100 text-blue-700 border-transparent font-bold"
+        });
       case "shipped":
-        return <Badge className="bg-purple-100 text-purple-700 border-transparent font-bold">SHIPPED</Badge>;
+        return ({
+          name: "Shipped",
+          className: "bg-purple-100 text-purple-700 border-transparent font-bold"
+        });
       case "completed":
-        return <Badge className="bg-emerald-100 text-emerald-700 border-transparent font-bold">COMPLETED</Badge>;
+        return ({
+          name: "Completed",
+          className: "bg-emerald-100 text-emerald-700 border-transparent font-bold"
+        });
       default:
         return <Badge variant="outline">{status}</Badge>;
     }
@@ -103,16 +119,29 @@ export default function MatDashboardPage() {
                   <td className="p-4 font-bold text-stone-850">{ord.customerName}</td>
                   <td className="p-4 font-mono text-stone-550">{ord.measurements}</td>
                   <td className="p-4">
-                    <select
-                      value={ord.status}
-                      onChange={(e) => handleStatusChange(ord.uuid, e.target.value)}
-                      className="bg-stone-50 border border-stone-200 text-stone-700 text-xs px-2 py-1 rounded-lg outline-none font-semibold transition-all focus:bg-white"
-                    >
-                      <option value="pending">Pending</option>
-                      <option value="in_progress">In Production</option>
-                      <option value="shipped">Shipped</option>
-                      <option value="completed">Completed</option>
-                    </select>
+
+                    <Select onValueChange={(value) => handleStatusChange(ord.uuid, value)}>
+                      {/* use cn and getStatusBadge(ord.status).className */}
+                      <SelectTrigger className={` bg-background text-xs px-2 py-1 rounded-lg outline-none font-semibold transition-all focus:bg-background ${getStatusBadge(ord.status).className}`}>
+                        <SelectValue placeholder={getStatusBadge(ord.status).name} />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectGroup >
+                          <SelectItem value="pending">
+                            Pending
+                          </SelectItem>
+                          <SelectItem value="in_progress">
+                            In Production
+                          </SelectItem>
+                          <SelectItem value="shipped" >
+                            Shipped
+                          </SelectItem>
+                          <SelectItem value="completed" >
+                            Completed
+                          </SelectItem>
+                        </SelectGroup>
+                      </SelectContent>
+                    </Select>
                   </td>
                   <td className="p-4 max-w-xs truncate">
                     {ord.note ? (
@@ -172,7 +201,7 @@ export default function MatDashboardPage() {
                 placeholder="Write custom instructions..."
                 value={noteText}
                 onChange={(e) => setNoteText(e.target.value)}
-                className="bg-stone-50 border-stone-200 focus:bg-white rounded-xl text-xs min-h-[90px]"
+                className="bg-stone-50 border-stone-200 focus:bg-white rounded-xl text-xs min-h-22"
               />
             </div>
 
