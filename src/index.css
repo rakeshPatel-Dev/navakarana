@@ -5,7 +5,6 @@
 
 @custom-variant dark (&:is(.dark *));
 
-
 body, html {
   scroll-behavior: smooth;
 }
@@ -142,4 +141,9 @@ body, html {
   100% {
     transform: translateY(0);
   }
+}
+
+::view-transition-old(root), ::view-transition-new(root) {
+    animation: none;
+    mix-blend-mode: normal;
 }
