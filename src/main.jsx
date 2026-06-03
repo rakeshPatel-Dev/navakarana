@@ -8,19 +8,21 @@ import { ThemeProvider } from './context/ThemeContext';
 import { AuthProvider } from './context/AuthContext';
 import { AdminAuthProvider } from './context/AdminAuthContext';
 import { Toaster } from 'sonner';
+import { TooltipProvider } from './components/ui/tooltip';
 
 createRoot(document.getElementById('root')).render(
   <ThemeProvider>
-    <AdminAuthProvider>
-
-      <AuthProvider>
+    <AuthProvider>
+      <AdminAuthProvider>
         <Provider store={store}>
-          <BrowserRouter>
-            <Toaster position="top-right" duration={3000} closeButton />
-            <App />
-          </BrowserRouter>
+          <TooltipProvider>
+            <BrowserRouter>
+              <Toaster position="top-right" duration={3000} closeButton />
+              <App />
+            </BrowserRouter>
+          </TooltipProvider>
         </Provider>
-      </AuthProvider>
-    </AdminAuthProvider>
+      </AdminAuthProvider>
+    </AuthProvider>
   </ThemeProvider>
-)
+);

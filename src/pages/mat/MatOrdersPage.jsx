@@ -74,15 +74,15 @@ export default function MatOrdersPage() {
   };
 
   return (
-    <div className="bg-stone-50 min-h-screen py-30 px-4 md:px-8">
+    <div className="bg-background min-h-screen py-30 px-4 md:px-8">
       <div className="max-w-5xl mx-auto space-y-6">
         {/* Header */}
-        <div className="border-b border-stone-200/60 pb-5">
+        <div className="border-b border-border/60 pb-5">
           <span className="text-brand font-bold text-xs uppercase tracking-widest">My Account</span>
-          <h1 className="text-3xl font-extrabold text-stone-900 mt-1 flex items-center gap-2">
+          <h1 className="text-3xl font-extrabold text-foreground mt-1 flex items-center gap-2">
             <RiShoppingBagLine /> My Mat Orders
           </h1>
-          <p className="text-stone-500 text-sm mt-1">Review manufacturing status, motto engravings, and download alignment blueprints.</p>
+          <p className="text-muted-foreground text-sm mt-1">Review manufacturing status, motto engravings, and download alignment blueprints.</p>
         </div>
 
         {/* List of Custom Orders */}
@@ -94,32 +94,32 @@ export default function MatOrdersPage() {
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: idx * 0.05 }}
-                className="bg-white border border-stone-100 rounded-3xl p-5 md:p-6 shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-5 transition-all hover:shadow-md hover:border-stone-200/50"
+                className="bg-background border border-border rounded-3xl p-5 md:p-6 shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-5 transition-all hover:shadow-md hover:border-border/50"
               >
                 <div className="space-y-3 flex-1">
                   <div className="flex flex-wrap items-center gap-3">
-                    <span className="font-extrabold text-stone-900 text-sm md:text-base">
-                      Order: <span className="font-mono text-stone-500">{order.uuid.substring(10)}</span>
+                    <span className="font-extrabold text-foreground text-sm md:text-base">
+                      Order: <span className="font-mono text-muted-foreground">{order.uuid.substring(10)}</span>
                     </span>
                     {getStatusBadge(order.status)}
                   </div>
 
-                  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-y-2 gap-x-4 text-xs font-medium text-stone-500 border-t border-stone-100 pt-3">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-y-2 gap-x-4 text-xs font-medium text-muted-foreground border-t border-border pt-3">
                     <div>
-                      <span className="text-stone-400">Order Date:</span>{" "}
-                      <span className="text-stone-700">{new Date(order.createdAt).toLocaleDateString()}</span>
+                      <span className="text-muted-foreground">Order Date:</span>{" "}
+                      <span className="text-foreground">{new Date(order.createdAt).toLocaleDateString()}</span>
                     </div>
                     <div>
-                      <span className="text-stone-400">Engraved Motto:</span>{" "}
-                      <span className="text-stone-700 font-serif italic">"{order.motto}"</span>
+                      <span className="text-muted-foreground">Engraved Motto:</span>{" "}
+                      <span className="text-foreground font-serif italic">"{order.motto}"</span>
                     </div>
                     <div>
-                      <span className="text-stone-400">Line Guide:</span>{" "}
-                      <span className="text-stone-700">{order.lineStyle} Line</span>
+                      <span className="text-muted-foreground">Line Guide:</span>{" "}
+                      <span className="text-foreground">{order.lineStyle} Line</span>
                     </div>
                     <div className="sm:col-span-2 md:col-span-3">
-                      <span className="text-stone-400">Anatomical Specs:</span>{" "}
-                      <span className="text-stone-600 font-mono">{order.measurements}</span>
+                      <span className="text-muted-foreground">Anatomical Specs:</span>{" "}
+                      <span className="text-muted-foreground font-mono">{order.measurements}</span>
                     </div>
                   </div>
                 </div>
@@ -128,12 +128,12 @@ export default function MatOrdersPage() {
                   {(order.status === "completed" || order.status === "shipped") ? (
                     <Button
                       onClick={() => handleDownloadSVG(order.uuid)}
-                      className="w-full sm:w-auto bg-stone-900 hover:bg-stone-850 text-white font-bold h-10 px-4 rounded-xl gap-2 cursor-pointer shadow-sm"
+                      className="w-full sm:w-auto bg-card hover:bg-card text-foreground font-bold h-10 px-4 rounded-xl gap-2 cursor-pointer shadow-sm"
                     >
                       <RiDownloadLine className="size-4" /> Download SVG
                     </Button>
                   ) : (
-                    <span className="text-xs text-stone-400 font-medium px-4 py-2 bg-stone-50 rounded-xl border border-stone-100">
+                    <span className="text-xs text-muted-foreground font-medium px-4 py-2 bg-background rounded-xl border border-border">
                       Processing blueprint...
                     </span>
                   )}
@@ -142,10 +142,10 @@ export default function MatOrdersPage() {
             ))}
           </div>
         ) : (
-          <div className="bg-white border border-stone-100 rounded-3xl p-16 text-center shadow-sm">
-            <div className="text-stone-300 text-5xl mb-4">🛒</div>
-            <h3 className="text-lg font-bold text-stone-800">No mat orders placed</h3>
-            <p className="text-stone-400 text-sm mt-1">Get custom fit alignment lines by creating a personalized yoga mat today.</p>
+          <div className="bg-background border border-border rounded-3xl p-16 text-center shadow-sm">
+            <div className="text-muted-foreground text-5xl mb-4">🛒</div>
+            <h3 className="text-lg font-bold text-foreground">No mat orders placed</h3>
+            <p className="text-muted-foreground text-sm mt-1">Get custom fit alignment lines by creating a personalized yoga mat today.</p>
             <Button asChild className="bg-brand hover:bg-brand-light mt-6 font-semibold rounded-xl text-white">
               <Link to="/mat/info">Custom Mat Details</Link>
             </Button>

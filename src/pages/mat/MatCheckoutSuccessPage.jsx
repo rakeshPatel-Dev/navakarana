@@ -70,7 +70,7 @@ export default function MatCheckoutSuccessPage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-stone-50 flex flex-col items-center justify-center gap-3">
+      <div className="min-h-screen bg-background flex flex-col items-center justify-center gap-3">
         <RiLoader4Line className="animate-spin size-10 text-brand" />
         <p className="text-stone-550 text-sm font-semibold">Confirming Stripe payment authorization...</p>
       </div>
@@ -79,26 +79,26 @@ export default function MatCheckoutSuccessPage() {
 
   if (success) {
     return (
-      <div className="min-h-screen bg-stone-50 flex items-center justify-center px-4">
+      <div className="min-h-screen bg-background flex items-center justify-center px-4">
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
-          className="max-w-md w-full bg-white border border-stone-100 p-8 rounded-4xl text-center shadow-lg space-y-6"
+          className="max-w-md w-full bg-background border border-border p-8 rounded-4xl text-center shadow-lg space-y-6"
         >
           <div className="size-16 bg-emerald-50 text-emerald-600 rounded-3xl flex items-center justify-center mx-auto text-3xl shadow-sm">
             <PiConfettiBold/>
           </div>
           <div className="space-y-2">
-            <h2 className="text-2xl font-black text-stone-900">Order Placed Successfully!</h2>
-            <p className="text-stone-500 text-sm">
+            <h2 className="text-2xl font-black text-foreground">Order Placed Successfully!</h2>
+            <p className="text-muted-foreground text-sm">
               Your anatomical dimensions have been compiled and sent to manufacturing. You can monitor progress in your dashboard.
             </p>
           </div>
           <div className="pt-2 flex flex-col gap-2">
-            <Button asChild className="w-full h-11 bg-stone-900 hover:bg-stone-850 rounded-xl text-white font-bold">
+            <Button asChild className="w-full h-11 bg-card hover:bg-card rounded-xl text-foreground font-bold">
               <Link to="/mat/orders">View Mat Orders</Link>
             </Button>
-            <Button asChild variant="ghost" className="w-full h-11 hover:bg-stone-50 text-stone-650 rounded-xl">
+            <Button asChild variant="ghost" className="w-full h-11 hover:bg-background text-stone-650 rounded-xl">
               <Link to="/">Back to Home</Link>
             </Button>
           </div>
@@ -108,7 +108,7 @@ export default function MatCheckoutSuccessPage() {
   }
 
   return (
-    <div className="bg-stone-50 min-h-screen py-20 px-4 md:px-8">
+    <div className="bg-background min-h-screen py-20 px-4 md:px-8">
       <div className="max-w-2xl mx-auto space-y-6">
         {/* Success Banner Header */}
         <motion.div
@@ -118,7 +118,7 @@ export default function MatCheckoutSuccessPage() {
         >
           <div className="absolute inset-0 bg-[radial-gradient(#ffffff0a_1px,transparent_1px)] [bg-size:16px_16px] pointer-events-none" />
 
-          <div className="size-12 bg-white/10 border border-white/20 text-white flex items-center justify-center rounded-2xl mx-auto text-xl shrink-0 shadow-sm">
+          <div className="size-12 bg-background/10 border border-white/20 text-foreground flex items-center justify-center rounded-2xl mx-auto text-xl shrink-0 shadow-sm">
             <RiCheckboxCircleLine className="size-6" />
           </div>
 
@@ -129,17 +129,17 @@ export default function MatCheckoutSuccessPage() {
         </motion.div>
 
         {/* Shipping Form Card */}
-        <div className="bg-white border border-stone-100 p-8 md:p-10 rounded-4xl shadow-sm space-y-8">
+        <div className="bg-background border border-border p-8 md:p-10 rounded-4xl shadow-sm space-y-8">
           <div>
-            <h2 className="text-lg font-bold text-stone-900 flex items-center gap-2">
+            <h2 className="text-lg font-bold text-foreground flex items-center gap-2">
               <RiMapPinLine className="text-brand size-5" /> Shipping Information
             </h2>
-            <p className="text-xs text-stone-400 mt-1.5">Complete your delivery address details to compile the customization bundle.</p>
+            <p className="text-xs text-muted-foreground mt-1.5">Complete your delivery address details to compile the customization bundle.</p>
           </div>
 
           <form onSubmit={handleSubmitOrder} className="space-y-6">
             <div className="space-y-2">
-              <Label htmlFor="name" className="text-stone-700 text-xs font-semibold">Recipient Full Name</Label>
+              <Label htmlFor="name" className="text-foreground text-xs font-semibold">Recipient Full Name</Label>
               <Input
                 id="name"
                 placeholder="Jane Doe"
@@ -152,7 +152,7 @@ export default function MatCheckoutSuccessPage() {
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
               <div className="space-y-2">
-                <Label htmlFor="line1" className="text-stone-700 text-xs font-semibold">Address Line 1</Label>
+                <Label htmlFor="line1" className="text-foreground text-xs font-semibold">Address Line 1</Label>
                 <Input
                   id="line1"
                   placeholder="Street address, P.O. Box"
@@ -164,7 +164,7 @@ export default function MatCheckoutSuccessPage() {
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="line2" className="text-stone-700 text-xs font-semibold">Address Line 2 <span className="text-[10px] text-stone-400 font-normal">(optional)</span></Label>
+                <Label htmlFor="line2" className="text-foreground text-xs font-semibold">Address Line 2 <span className="text-[10px] text-muted-foreground font-normal">(optional)</span></Label>
                 <Input
                   id="line2"
                   placeholder="Apartment, suite, unit"
@@ -176,7 +176,7 @@ export default function MatCheckoutSuccessPage() {
 
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
               <div className="space-y-2">
-                <Label htmlFor="city" className="text-stone-700 text-xs font-semibold">City</Label>
+                <Label htmlFor="city" className="text-foreground text-xs font-semibold">City</Label>
                 <Input
                   id="city"
                   placeholder="San Francisco"
@@ -188,7 +188,7 @@ export default function MatCheckoutSuccessPage() {
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="country" className="text-stone-700 text-xs font-semibold">Country</Label>
+                <Label htmlFor="country" className="text-foreground text-xs font-semibold">Country</Label>
                 <Input
                   id="country"
                   placeholder="United States"
@@ -200,7 +200,7 @@ export default function MatCheckoutSuccessPage() {
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="postal" className="text-stone-700 text-xs font-semibold">Postal / ZIP Code</Label>
+                <Label htmlFor="postal" className="text-foreground text-xs font-semibold">Postal / ZIP Code</Label>
                 <Input
                   id="postal"
                   placeholder="94103"

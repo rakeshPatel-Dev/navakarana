@@ -5,31 +5,30 @@ import {
   RiFileList3Line, RiShoppingBag3Line, RiShieldStarLine 
 } from "react-icons/ri";
 import { Button } from "@/components/ui/button";
+import SectionBadge from "@/components/landing/components/SectionBadge";
 
 export default function MatInfoPage() {
   return (
-    <div className="bg-stone-50 min-h-screen relative overflow-hidden pb-16">
+    <section className="bg-background min-h-screen py-20 relative overflow-hidden pb-16">
       {/* Decorative Blur and Shapes */}
       <div className="absolute top-20 right-10 w-96 h-96 bg-brand/5 blob-shape pointer-events-none" />
-      <div className="absolute bottom-40 left-10 w-80 h-80 bg-stone-200/60 blob-shape-2 pointer-events-none" />
+      <div className="absolute bottom-40 left-10 w-80 h-80 bg-muted/60 blob-shape-2 pointer-events-none" />
 
       {/* Hero Section */}
-      <div className="max-w-6xl mx-auto px-4 pt-16 pb-20 text-center relative z-10">
+      <div className="max-w-6xl mx-auto px-4 pt-16 pb-20 text-center flex items-center flex-col relative z-10">
+        <SectionBadge icon={RiShieldStarLine} text="Introducing Navakarana Mat" />
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           className="space-y-6"
         >
-          <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-brand/10 text-brand-dark text-xs font-bold uppercase tracking-wider rounded-full">
-            <RiShieldStarLine /> Premium Innovation
-          </span>
           
-          <h1 className="text-4xl md:text-6xl font-black text-stone-900 leading-tight max-w-4xl mx-auto">
+          <h1 className="text-4xl md:text-6xl font-black text-foreground leading-tight max-w-4xl mx-auto">
             Your Perfect Yoga Mat, <span className="text-brand">Custom Made</span>
           </h1>
           
-          <p className="text-stone-600 text-lg md:text-xl max-w-2xl mx-auto font-normal leading-relaxed">
+          <p className="text-muted-foreground text-lg md:text-xl max-w-2xl mx-auto font-normal leading-relaxed">
             The world's first custom yoga mat tailored specifically to your body's skeletal measurements, finished with a personalized engraved motto and alignment layout lines.
           </p>
 
@@ -45,7 +44,7 @@ export default function MatInfoPage() {
             
             <a 
               href="#features"
-              className="text-stone-600 hover:text-stone-900 font-bold transition-all text-base border-b-2 border-transparent hover:border-stone-400 py-1"
+              className="text-muted-foreground hover:text-foreground font-bold transition-all text-base border-b-2 border-transparent hover:border-border py-1"
             >
               Learn More ↓
             </a>
@@ -61,7 +60,7 @@ export default function MatInfoPage() {
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="bg-stone-900 border border-stone-850 p-8 rounded-4xl aspect-[4/6] max-w-md mx-auto w-full relative flex flex-col justify-between text-stone-300 shadow-2xl overflow-hidden"
+          className="bg-card border border-border p-8 rounded-4xl aspect-[4/6] max-w-md mx-auto w-full relative flex flex-col justify-between text-muted-foreground shadow-2xl overflow-hidden"
         >
           <div className="absolute inset-0 bg-[radial-gradient(#ffffff03_1px,transparent_1px)] [background-size:16px_16px] pointer-events-none" />
           
@@ -72,15 +71,15 @@ export default function MatInfoPage() {
           <div className="absolute inset-y-12 left-1/2 border-l border-brand/20" />
           
           <div className="text-center">
-            <span className="text-[10px] uppercase font-bold tracking-widest text-stone-500">Symmetrical Guide Lines</span>
+            <span className="text-[10px] uppercase font-bold tracking-widest text-muted-foreground">Symmetrical Guide Lines</span>
           </div>
 
           <div className="text-center z-10">
             <p className="text-brand font-serif italic text-lg tracking-wide uppercase">" BREATHE & FLOW "</p>
-            <span className="text-[10px] text-stone-500 block mt-1 uppercase font-semibold">Your Custom Engraving</span>
+            <span className="text-[10px] text-muted-foreground block mt-1 uppercase font-semibold">Your Custom Engraving</span>
           </div>
 
-          <div className="flex justify-between text-[10px] text-stone-500 uppercase font-semibold">
+          <div className="flex justify-between text-[10px] text-muted-foreground uppercase font-semibold">
             <span>Mat Width: Custom</span>
             <span>Mat Height: Custom</span>
           </div>
@@ -88,8 +87,8 @@ export default function MatInfoPage() {
 
         {/* Feature Explanations */}
         <div className="space-y-8">
-          <h2 className="text-3xl font-extrabold text-stone-900">Engineered for Your Alignment</h2>
-          <p className="text-stone-600 text-sm leading-relaxed">
+          <h2 className="text-3xl font-extrabold text-foreground">Engineered for Your Alignment</h2>
+          <p className="text-muted-foreground text-sm leading-relaxed">
             Conventional yoga mats use static lengths, leaving taller practitioners cramped and shorter practitioners reaching too far. Navakarana customizes the dimensions and alignment marking guides to match your specific anatomical measurements.
           </p>
 
@@ -117,18 +116,18 @@ export default function MatInfoPage() {
               }
             ].map((feature, idx) => (
               <div key={idx} className="flex gap-4 items-start">
-                <div className="size-11 bg-white border border-stone-200 rounded-2xl flex items-center justify-center shrink-0 shadow-sm">
+                <div className="size-11 bg-background border border-border rounded-2xl flex items-center justify-center shrink-0 shadow-sm">
                   {feature.icon}
                 </div>
                 <div>
-                  <h3 className="font-bold text-stone-900 text-base">{feature.title}</h3>
-                  <p className="text-stone-500 text-sm mt-1 leading-normal">{feature.desc}</p>
+                  <h3 className="font-bold text-foreground text-base">{feature.title}</h3>
+                  <p className="text-muted-foreground text-sm mt-1 leading-normal">{feature.desc}</p>
                 </div>
               </div>
             ))}
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 }
