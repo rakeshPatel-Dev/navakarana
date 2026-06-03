@@ -179,17 +179,17 @@ export default function AdminTeachersPage() {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-stone-200/60 pb-5">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-border/60 pb-5">
         <div>
-          <h1 className="text-2xl md:text-3xl font-extrabold text-stone-900 flex items-center gap-2">
+          <h1 className="text-2xl md:text-3xl font-extrabold text-foreground flex items-center gap-2">
             <RiUserStarLine /> Teacher Directory
           </h1>
-          <p className="text-stone-500 text-xs mt-1">Add, edit, lock or unlock dashboard credentials, and grant free dashboard waivers.</p>
+          <p className="text-muted-foreground text-xs mt-1">Add, edit, lock or unlock dashboard credentials, and grant free dashboard waivers.</p>
         </div>
 
         <Button
           onClick={handleOpenCreate}
-          className="bg-stone-900 hover:bg-stone-850 text-white font-bold h-10 px-4 rounded-xl gap-1.5 cursor-pointer self-start sm:self-auto text-xs"
+          className="bg-card hover:bg-card text-foreground font-bold h-10 px-4 rounded-xl gap-1.5 cursor-pointer self-start sm:self-auto text-xs"
         >
           <RiAddLine /> Add Teacher Account
         </Button>
@@ -197,21 +197,21 @@ export default function AdminTeachersPage() {
 
       {/* Filter Row */}
       <div className="relative w-full sm:w-72">
-        <RiSearchLine className="absolute left-3 top-1/2 -translate-y-1/2 text-stone-400 size-4" />
+        <RiSearchLine className="absolute left-3.5 top-1/2 -translate-y-1/2 text-muted-foreground size-5" />
         <Input
           placeholder="Search by name, email..."
           value={search}
           onChange={(e) => setSearch(e.target.value)}
-          className="pl-9 bg-white border-stone-200 rounded-xl h-10 text-xs text-stone-700"
+          className="pl-10 text-sm"
         />
       </div>
 
       {/* Table */}
-      <div className="bg-white border border-stone-100 rounded-3xl shadow-sm overflow-hidden">
+      <div className="bg-background border border-border rounded-3xl shadow-sm overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full text-left border-collapse text-xs">
             <thead>
-              <tr className="bg-stone-50 text-stone-500 font-bold border-b border-stone-100">
+              <tr className="bg-background text-muted-foreground font-bold border-b border-border">
                 <th className="p-4">Name / Email</th>
                 <th className="p-4">Account Status</th>
                 <th className="p-4">Dashboard Gate</th>
@@ -220,22 +220,22 @@ export default function AdminTeachersPage() {
                 <th className="p-4 text-right">Actions</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-stone-100">
+            <tbody className="divide-y divide-border">
               {filteredTeachers.map((teacher) => (
-                <tr key={teacher.uuid} className="hover:bg-stone-50/50 transition-colors">
+                <tr key={teacher.uuid} className="hover:bg-background/50 transition-colors">
                   <td className="p-4">
                     <div className="space-y-0.5">
-                      <p className="font-bold text-stone-850">{teacher.name}</p>
-                      <p className="text-[10px] text-stone-450">{teacher.email}</p>
+                      <p className="font-bold text-foreground">{teacher.name}</p>
+                      <p className="text-[10px] text-muted-foreground">{teacher.email}</p>
                     </div>
                   </td>
                   <td className="p-4">
                     {teacher.status === "active" ? (
-                      <Badge className="bg-emerald-100 text-emerald-700 border-emerald-250 rounded-md font-bold">
+                      <Badge className="bg-green-500/10 text-green-600 dark:text-green-400 border-green-500/20 rounded-md font-bold">
                         ACTIVE
                       </Badge>
                     ) : (
-                      <Badge className="bg-stone-100 text-stone-500 border-stone-200 rounded-md font-semibold">
+                      <Badge className="bg-muted text-muted-foreground border-border rounded-md font-semibold">
                         INACTIVE
                       </Badge>
                     )}
@@ -244,8 +244,8 @@ export default function AdminTeachersPage() {
                     <button
                       onClick={() => handleToggleLock(teacher.uuid)}
                       className={`inline-flex items-center gap-1 font-bold px-2 py-0.5 rounded border transition-colors cursor-pointer text-[10px] ${teacher.is_locked
-                          ? "bg-red-50 text-red-700 border-red-100 hover:bg-red-100"
-                          : "bg-emerald-50 text-emerald-700 border-emerald-100 hover:bg-emerald-100"
+                          ? "bg-red-500/10 text-red-600 dark:text-red-400 border-red-500/20 hover:bg-red-500/20"
+                          : "bg-green-500/10 text-green-600 dark:text-green-400 border-green-500/20 hover:bg-green-500/20"
                         }`}
                     >
                       {teacher.is_locked ? (
@@ -261,14 +261,14 @@ export default function AdminTeachersPage() {
                   </td>
                   <td className="p-4 font-semibold">
                     {teacher.admin_free_access ? (
-                      <span className="text-emerald-600 flex items-center gap-1" title={teacher.free_access_reason}>
+                      <span className="text-green-600 dark:text-green-400 flex items-center gap-1" title={teacher.free_access_reason}>
                         Granted Waiver
                       </span>
                     ) : (
-                      <span className="text-stone-400 font-normal">—</span>
+                      <span className="text-muted-foreground font-normal">—</span>
                     )}
                   </td>
-                  <td className="p-4 text-stone-500 font-medium">
+                  <td className="p-4 text-muted-foreground font-medium">
                     {new Date(teacher.registeredAt).toLocaleDateString()}
                   </td>
                   <td className="p-4 text-right space-x-2 whitespace-nowrap">
@@ -276,7 +276,7 @@ export default function AdminTeachersPage() {
                     <Button
                       onClick={() => handleOpenFreeAccess(teacher)}
                       variant="outline"
-                      className="border-stone-250 hover:bg-stone-50 text-stone-700 size-7 rounded-lg cursor-pointer"
+                      className="border-border hover:bg-background text-foreground size-7 rounded-lg cursor-pointer"
                       title={teacher.admin_free_access ? "Revoke Waiver" : "Grant Waiver"}
                       size="icon"
                     >
@@ -287,7 +287,7 @@ export default function AdminTeachersPage() {
                     <Button
                       onClick={() => handleViewPayments(teacher.name)}
                       variant="outline"
-                      className="border-stone-250 hover:bg-stone-50 text-stone-700 size-7 rounded-lg cursor-pointer"
+                      className="border-border hover:bg-background text-foreground size-7 rounded-lg cursor-pointer"
                       title="Registration Payments"
                       size="icon"
                     >
@@ -298,7 +298,7 @@ export default function AdminTeachersPage() {
                     <Button
                       onClick={() => handleOpenEdit(teacher)}
                       variant="outline"
-                      className="border-stone-250 hover:bg-stone-50 text-stone-700 size-7 rounded-lg cursor-pointer"
+                      className="border-border hover:bg-background text-foreground size-7 rounded-lg cursor-pointer"
                       title="Edit details"
                       size="icon"
                     >
@@ -325,12 +325,12 @@ export default function AdminTeachersPage() {
 
       {/* Add / Edit Dialog */}
       <Dialog open={formOpen} onOpenChange={setFormOpen}>
-        <DialogContent className="max-w-sm bg-white p-6 rounded-3xl border border-stone-100 text-stone-900 shadow-xl">
+        <DialogContent className="max-w-sm bg-background p-6 rounded-3xl border border-border text-foreground shadow-xl">
           <DialogHeader>
             <DialogTitle className="text-lg font-bold">
               {editingTeacher ? "Edit Teacher details" : "Register Teacher Account"}
             </DialogTitle>
-            <DialogDescription className="text-xs text-stone-400 mt-1">
+            <DialogDescription className="text-xs text-muted-foreground mt-1">
               Add credentials for instructors manually. Roles default to 'teacher'.
             </DialogDescription>
           </DialogHeader>
@@ -339,25 +339,25 @@ export default function AdminTeachersPage() {
 
           <form onSubmit={handleSaveTeacher} className="space-y-4 pt-2">
             <div className="space-y-1.5">
-              <Label htmlFor="name" className="text-stone-700 font-semibold text-xs">Instructor Full Name *</Label>
+              <Label htmlFor="name" className="text-foreground font-semibold text-xs">Instructor Full Name *</Label>
               <Input
                 id="name"
                 placeholder="Arjun Mehta"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
-                className="h-10 bg-stone-50 border-stone-200 focus:bg-white rounded-xl text-xs"
+                className="text-sm"
               />
             </div>
 
             <div className="space-y-1.5">
-              <Label htmlFor="email" className="text-stone-700 font-semibold text-xs">Email Address *</Label>
+              <Label htmlFor="email" className="text-foreground font-semibold text-xs">Email Address *</Label>
               <Input
                 id="email"
                 type="email"
                 placeholder="arjun@navakarana.com"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="h-10 bg-stone-50 border-stone-200 focus:bg-white rounded-xl text-xs"
+                className="text-sm"
               />
             </div>
 
@@ -366,13 +366,13 @@ export default function AdminTeachersPage() {
                 type="button"
                 variant="ghost"
                 onClick={() => setFormOpen(false)}
-                className="hover:bg-stone-50 rounded-xl font-semibold text-xs"
+                className="hover:bg-muted font-semibold rounded-2xl h-12 px-6 text-sm transition-colors"
               >
                 Cancel
               </Button>
               <Button
                 type="submit"
-                className="bg-stone-900 hover:bg-stone-850 text-white font-bold rounded-xl text-xs cursor-pointer px-4"
+                className="bg-card hover:bg-card text-foreground font-bold rounded-2xl h-12 px-6 text-sm cursor-pointer transition-colors"
               >
                 Save Account
               </Button>
@@ -383,12 +383,12 @@ export default function AdminTeachersPage() {
 
       {/* Waiver Waiver dialog */}
       <Dialog open={freeAccessOpen} onOpenChange={setFreeAccessOpen}>
-        <DialogContent className="max-w-sm bg-white p-6 rounded-3xl border border-stone-100 text-stone-900 shadow-xl">
+        <DialogContent className="max-w-sm bg-background p-6 rounded-3xl border border-border text-foreground shadow-xl">
           <DialogHeader>
             <DialogTitle className="text-lg font-bold">
               {selectedTeacher?.admin_free_access ? "Revoke Free Waiver" : "Grant Free Waiver"}
             </DialogTitle>
-            <DialogDescription className="text-xs text-stone-400 mt-1">
+            <DialogDescription className="text-xs text-muted-foreground mt-1">
               Waiver bypasses the $49.00 registration requirement immediately.
             </DialogDescription>
           </DialogHeader>
@@ -396,13 +396,13 @@ export default function AdminTeachersPage() {
           <form onSubmit={handleSaveFreeAccess} className="space-y-4 pt-2">
             {!selectedTeacher?.admin_free_access && (
               <div className="space-y-1.5">
-                <Label htmlFor="reason" className="text-stone-700 font-semibold text-xs">Exemption Reason</Label>
+                <Label htmlFor="reason" className="text-foreground font-semibold text-xs">Exemption Reason</Label>
                 <Textarea
                   id="reason"
                   placeholder="e.g. Beta tester promotion..."
                   value={freeReason}
                   onChange={(e) => setFreeReason(e.target.value)}
-                  className="bg-stone-50 border-stone-200 focus:bg-white rounded-xl text-xs min-h-15"
+                  className="min-h-24 text-sm"
                 />
               </div>
             )}
@@ -412,13 +412,13 @@ export default function AdminTeachersPage() {
                 type="button"
                 variant="ghost"
                 onClick={() => setFreeAccessOpen(false)}
-                className="hover:bg-stone-50 rounded-xl font-semibold text-xs"
+                className="hover:bg-muted font-semibold rounded-2xl h-12 px-6 text-sm transition-colors"
               >
                 Cancel
               </Button>
               <Button
                 type="submit"
-                className="bg-stone-900 hover:bg-stone-850 text-white font-bold rounded-xl text-xs cursor-pointer px-4"
+                className="bg-card hover:bg-card text-foreground font-bold rounded-2xl h-12 px-6 text-sm cursor-pointer transition-colors"
               >
                 {selectedTeacher?.admin_free_access ? "Revoke Exemption" : "Grant Exemption"}
               </Button>

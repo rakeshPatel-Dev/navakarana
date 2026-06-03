@@ -63,22 +63,22 @@ export default function MatDashboardPage() {
       case "pending":
         return ({
           name: "Pending",
-          className: "bg-yellow-100 text-yellow-700 border-transparent font-bold"
+          className: "bg-yellow-500/10 text-yellow-600 dark:text-yellow-400 border-transparent font-bold"
         })
       case "in_progress":
         return ({
           name: "In Production",
-          className: "bg-blue-100 text-blue-700 border-transparent font-bold"
+          className: "bg-blue-500/10 text-blue-600 dark:text-blue-400 border-transparent font-bold"
         });
       case "shipped":
         return ({
           name: "Shipped",
-          className: "bg-purple-100 text-purple-700 border-transparent font-bold"
+          className: "bg-purple-500/10 text-purple-600 dark:text-purple-400 border-transparent font-bold"
         });
       case "completed":
         return ({
           name: "Completed",
-          className: "bg-emerald-100 text-emerald-700 border-transparent font-bold"
+          className: "bg-green-500/10 text-green-600 dark:text-green-400 border-transparent font-bold"
         });
       default:
         return <Badge variant="outline">{status}</Badge>;
@@ -88,21 +88,21 @@ export default function MatDashboardPage() {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-stone-200/60 pb-5">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-border/60 pb-5">
         <div>
-          <h1 className="text-2xl md:text-3xl font-extrabold text-stone-900 flex items-center gap-2">
+          <h1 className="text-2xl md:text-3xl font-extrabold text-foreground flex items-center gap-2">
             <RiShoppingBag3Line /> Mat Order Management
           </h1>
-          <p className="text-stone-500 text-xs mt-1">Review custom yoga mat orders, update assembly states, view blueprints, and append notes.</p>
+          <p className="text-muted-foreground text-xs mt-1">Review custom yoga mat orders, update assembly states, view blueprints, and append notes.</p>
         </div>
       </div>
 
       {/* Orders Table */}
-      <div className="bg-white border border-stone-100 rounded-3xl shadow-sm overflow-hidden">
+      <div className="bg-background border border-border rounded-3xl shadow-sm overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full text-left border-collapse text-xs">
             <thead>
-              <tr className="bg-stone-50 text-stone-500 font-bold border-b border-stone-100">
+              <tr className="bg-background text-muted-foreground font-bold border-b border-border">
                 <th className="p-4">Order ID</th>
                 <th className="p-4">Customer</th>
                 <th className="p-4">Anatomical Specs</th>
@@ -112,12 +112,12 @@ export default function MatDashboardPage() {
                 <th className="p-4 text-right">Actions</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-stone-100">
+            <tbody className="divide-y divide-border">
               {orders.map((ord) => (
-                <tr key={ord.uuid} className="hover:bg-stone-50/50 transition-colors">
-                  <td className="p-4 font-mono font-bold text-stone-600">{ord.uuid.substring(10)}</td>
-                  <td className="p-4 font-bold text-stone-850">{ord.customerName}</td>
-                  <td className="p-4 font-mono text-stone-550">{ord.measurements}</td>
+                <tr key={ord.uuid} className="hover:bg-background/50 transition-colors">
+                  <td className="p-4 font-mono font-bold text-muted-foreground">{ord.uuid.substring(10)}</td>
+                  <td className="p-4 font-bold text-foreground">{ord.customerName}</td>
+                  <td className="p-4 font-mono text-muted-foreground">{ord.measurements}</td>
                   <td className="p-4">
 
                     <Select onValueChange={(value) => handleStatusChange(ord.uuid, value)}>
@@ -145,12 +145,12 @@ export default function MatDashboardPage() {
                   </td>
                   <td className="p-4 max-w-xs truncate">
                     {ord.note ? (
-                      <span className="text-stone-600 font-medium">{ord.note}</span>
+                      <span className="text-muted-foreground font-medium">{ord.note}</span>
                     ) : (
-                      <span className="text-stone-400 font-normal italic">No note added</span>
+                      <span className="text-muted-foreground font-normal italic">No note added</span>
                     )}
                   </td>
-                  <td className="p-4 text-stone-500 font-medium">
+                  <td className="p-4 text-muted-foreground font-medium">
                     {new Date(ord.createdAt).toLocaleDateString()}
                   </td>
                   <td className="p-4 text-right space-x-2 whitespace-nowrap">
@@ -158,7 +158,7 @@ export default function MatDashboardPage() {
                     <Button
                       onClick={() => handleOpenNote(ord)}
                       variant="outline"
-                      className="border-stone-250 hover:bg-stone-50 text-stone-750 size-7 rounded-lg cursor-pointer"
+                      className="border-border hover:bg-background text-foreground size-7 rounded-lg cursor-pointer"
                       title="Update notes"
                       size="icon"
                     >
@@ -169,7 +169,7 @@ export default function MatDashboardPage() {
                     <Button
                       onClick={() => handleDownloadSVG(ord.uuid)}
                       variant="outline"
-                      className="border-stone-250 hover:bg-stone-50 text-stone-750 size-7 rounded-lg cursor-pointer"
+                      className="border-border hover:bg-background text-foreground size-7 rounded-lg cursor-pointer"
                       title="Download blueprint Vector"
                       size="icon"
                     >
@@ -185,23 +185,23 @@ export default function MatDashboardPage() {
 
       {/* Note dialog */}
       <Dialog open={noteOpen} onOpenChange={setNoteOpen}>
-        <DialogContent className="max-w-sm bg-white p-6 rounded-3xl border border-stone-100 text-stone-900 shadow-xl">
+        <DialogContent className="max-w-sm bg-background p-6 rounded-3xl border border-border text-foreground shadow-xl">
           <DialogHeader>
             <DialogTitle className="text-lg font-bold">Edit Order Note</DialogTitle>
-            <DialogDescription className="text-xs text-stone-400 mt-1">
+            <DialogDescription className="text-xs text-muted-foreground mt-1">
               Append special assembly logs or customer request details here.
             </DialogDescription>
           </DialogHeader>
 
           <form onSubmit={handleSaveNote} className="space-y-4 pt-2">
             <div className="space-y-1.5">
-              <Label htmlFor="note" className="text-stone-750 font-semibold text-xs">Note details</Label>
+              <Label htmlFor="note" className="text-foreground font-semibold text-xs">Note details</Label>
               <Textarea
                 id="note"
                 placeholder="Write custom instructions..."
                 value={noteText}
                 onChange={(e) => setNoteText(e.target.value)}
-                className="bg-stone-50 border-stone-200 focus:bg-white rounded-xl text-xs min-h-22"
+                className="bg-background border-border focus:bg-background rounded-xl text-xs min-h-22"
               />
             </div>
 
@@ -210,13 +210,13 @@ export default function MatDashboardPage() {
                 type="button"
                 variant="ghost"
                 onClick={() => setNoteOpen(false)}
-                className="hover:bg-stone-50 rounded-xl font-semibold text-xs"
+                className="hover:bg-background rounded-xl font-semibold text-xs"
               >
                 Cancel
               </Button>
               <Button
                 type="submit"
-                className="bg-stone-900 hover:bg-stone-850 text-white font-bold rounded-xl text-xs cursor-pointer px-4"
+                className="bg-card hover:bg-card text-foreground font-bold rounded-xl text-xs cursor-pointer px-4"
               >
                 Save Note
               </Button>

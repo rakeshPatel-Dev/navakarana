@@ -45,12 +45,12 @@ export default function AdminSettingsPage() {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-stone-200/60 pb-5">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-border/60 pb-5">
         <div>
-          <h1 className="text-2xl md:text-3xl font-extrabold text-stone-900 flex items-center gap-2">
+          <h1 className="text-2xl md:text-3xl font-extrabold text-foreground flex items-center gap-2">
             <RiSettings4Line /> System Settings
           </h1>
-          <p className="text-stone-500 text-xs mt-1">Configure global platform metadata, transaction fee policies, and visual theme colors.</p>
+          <p className="text-muted-foreground text-xs mt-1">Configure global platform metadata, transaction fee policies, and visual theme colors.</p>
         </div>
       </div>
 
@@ -58,84 +58,84 @@ export default function AdminSettingsPage() {
         {/* Row 1: General & Fees */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {/* General settings */}
-          <div className="bg-white border border-stone-100 p-6 rounded-3xl shadow-sm space-y-4">
-            <h3 className="font-extrabold text-stone-900 text-sm uppercase tracking-wider border-b border-stone-100 pb-3">
+          <div className="bg-background border border-border p-6 rounded-3xl shadow-sm space-y-4">
+            <h3 className="font-extrabold text-foreground text-sm uppercase tracking-wider border-b border-border pb-3">
               Platform General Config
             </h3>
             
             <div className="space-y-1.5">
-              <Label htmlFor="platName" className="text-stone-700 font-semibold text-xs">Platform Name</Label>
+              <Label htmlFor="platName" className="text-foreground font-semibold text-xs">Platform Name</Label>
               <Input
                 id="platName"
                 value={platformName}
                 onChange={(e) => setPlatformName(e.target.value)}
-                className="h-10 bg-stone-50 border-stone-200 focus:bg-white rounded-xl text-xs"
+                className="text-sm"
               />
             </div>
 
             <div className="space-y-1.5">
-              <Label htmlFor="logo" className="text-stone-700 font-semibold text-xs">Logo Assets URL</Label>
+              <Label htmlFor="logo" className="text-foreground font-semibold text-xs">Logo Assets URL</Label>
               <Input
                 id="logo"
                 value={logoUrl}
                 onChange={(e) => setLogoUrl(e.target.value)}
-                className="h-10 bg-stone-50 border-stone-200 focus:bg-white rounded-xl text-xs"
+                className="text-sm"
               />
             </div>
 
             <div className="space-y-1.5">
-              <Label htmlFor="currency" className="text-stone-700 font-semibold text-xs">Default Currency Code</Label>
+              <Label htmlFor="currency" className="text-foreground font-semibold text-xs">Default Currency Code</Label>
               <Input
                 id="currency"
                 value={currency}
                 onChange={(e) => setCurrency(e.target.value)}
-                className="h-10 bg-stone-50 border-stone-200 focus:bg-white rounded-xl text-xs"
+                className="text-sm"
               />
             </div>
           </div>
 
           {/* Fees settings */}
-          <div className="bg-white border border-stone-100 p-6 rounded-3xl shadow-sm space-y-4">
-            <h3 className="font-extrabold text-stone-900 text-sm uppercase tracking-wider border-b border-stone-100 pb-3 flex items-center gap-1.5">
+          <div className="bg-background border border-border p-6 rounded-3xl shadow-sm space-y-4">
+            <h3 className="font-extrabold text-foreground text-sm uppercase tracking-wider border-b border-border pb-3 flex items-center gap-1.5">
               <RiMoneyDollarCircleLine /> Pricing & Transaction Fees
             </h3>
             
             <div className="space-y-1.5">
-              <Label htmlFor="matPrice" className="text-stone-700 font-semibold text-xs">Custom Mat Price (cents)</Label>
+              <Label htmlFor="matPrice" className="text-foreground font-semibold text-xs">Custom Mat Price (cents)</Label>
               <Input
                 id="matPrice"
                 type="number"
                 value={matPrice}
                 onChange={(e) => setMatPrice(e.target.value)}
-                className="h-10 bg-stone-50 border-stone-200 focus:bg-white rounded-xl text-xs"
+                className="text-sm"
               />
-              <p className="text-[10px] text-stone-400 mt-1 flex items-start gap-1"><RiInformationLine className="size-3.5 mt-0.5 text-stone-500 shrink-0" /> Value in cents. 100 = $1.00. Current: ${(matPrice/100).toFixed(2)}</p>
+              <p className="text-[10px] text-muted-foreground mt-1 flex items-start gap-1"><RiInformationLine className="size-3.5 mt-0.5 text-muted-foreground shrink-0" /> Value in cents. 100 = $1.00. Current: ${(matPrice/100).toFixed(2)}</p>
             </div>
 
             <div className="space-y-1.5">
-              <Label htmlFor="teacherFee" className="text-stone-700 font-semibold text-xs">Teacher Dashboard Fee (cents)</Label>
+              <Label htmlFor="teacherFee" className="text-foreground font-semibold text-xs">Teacher Dashboard Fee (cents)</Label>
               <Input
                 id="teacherFee"
                 type="number"
                 value={teacherFee}
                 onChange={(e) => setTeacherFee(e.target.value)}
-                className="h-10 bg-stone-50 border-stone-200 focus:bg-white rounded-xl text-xs"
+                className="text-sm"
               />
-              <p className="text-[10px] text-stone-400 mt-1 flex items-start gap-1"><RiInformationLine className="size-3.5 mt-0.5 text-stone-500 shrink-0" /> Value in cents. 0 = Free dashboard access. Current: ${(teacherFee/100).toFixed(2)}</p>
+              <p className="text-[10px] text-muted-foreground mt-1 flex items-start gap-1"><RiInformationLine className="size-3.5 mt-0.5 text-muted-foreground shrink-0" /> Value in cents. 0 = Free dashboard access. Current: ${(teacherFee/100).toFixed(2)}</p>
             </div>
           </div>
         </div>
 
         {/* Row 2: Theme Colors */}
-        <div className="bg-white border border-stone-100 p-6 md:p-8 rounded-3xl shadow-sm space-y-4">
-          <h3 className="font-extrabold text-stone-900 text-sm uppercase tracking-wider border-b border-stone-100 pb-3 flex items-center gap-1.5">
+        <div className="bg-background border border-border p-6 md:p-8 rounded-3xl shadow-sm space-y-4">
+          <h3 className="font-extrabold text-foreground text-sm uppercase tracking-wider border-b border-border pb-3 flex items-center gap-1.5">
             <RiPaletteLine /> System Brand Theme Palette
           </h3>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5">
             {Object.keys(colors).map((key) => (
               <div key={key} className="space-y-1.5">
-                <Label htmlFor={key} className="text-stone-700 font-semibold text-[10px] truncate block capitalize">
+                <Label htmlFor={key} className="text-foreground font-semibold text-[10px] truncate block capitalize">
                   {key.replace(/_/g, " ")}
                 </Label>
                 <div className="flex gap-2 items-center">
@@ -144,14 +144,14 @@ export default function AdminSettingsPage() {
                     type="color"
                     value={colors[key]}
                     onChange={(e) => handleColorChange(key, e.target.value)}
-                    className="size-8 rounded border border-stone-200 cursor-pointer shrink-0"
+                    className="size-10 rounded-xl border border-border cursor-pointer shrink-0"
                   />
                   <Input
                     id={key}
                     type="text"
                     value={colors[key]}
                     onChange={(e) => handleColorChange(key, e.target.value)}
-                    className="h-8 bg-stone-50 border-stone-200 rounded-lg text-xs"
+                    className="h-10 rounded-xl text-xs"
                   />
                 </div>
               </div>
@@ -163,7 +163,7 @@ export default function AdminSettingsPage() {
         <div className="flex items-center gap-3 pt-2">
           <Button
             type="submit"
-            className="bg-stone-900 hover:bg-stone-850 text-white font-bold h-11 px-6 rounded-xl cursor-pointer"
+            className="bg-card hover:bg-card text-foreground font-bold h-14 px-8 rounded-2xl cursor-pointer text-base"
           >
             Save All Settings
           </Button>

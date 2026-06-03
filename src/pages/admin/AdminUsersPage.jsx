@@ -61,32 +61,32 @@ export default function AdminUsersPage() {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-stone-200/60 pb-5">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-border/60 pb-5">
         <div>
-          <h1 className="text-2xl md:text-3xl font-extrabold text-stone-900 flex items-center gap-2">
+          <h1 className="text-2xl md:text-3xl font-extrabold text-foreground flex items-center gap-2">
             <RiGroupLine /> Student Accounts
           </h1>
-          <p className="text-stone-500 text-xs mt-1">Review student registries, inspect profiles, and deactivate or reactivate access.</p>
+          <p className="text-muted-foreground text-xs mt-1">Review student registries, inspect profiles, and deactivate or reactivate access.</p>
         </div>
       </div>
 
       {/* Filter Row */}
       <div className="relative w-full sm:w-72">
-        <RiSearchLine className="absolute left-3 top-1/2 -translate-y-1/2 text-stone-400 size-4" />
+        <RiSearchLine className="absolute left-3.5 top-1/2 -translate-y-1/2 text-muted-foreground size-5" />
         <Input
           placeholder="Search by name, email..."
           value={search}
           onChange={(e) => setSearch(e.target.value)}
-          className="pl-9 bg-white border-stone-200 rounded-xl h-10 text-xs text-stone-700"
+          className="pl-10 text-sm"
         />
       </div>
 
       {/* Table */}
-      <div className="bg-white border border-stone-100 rounded-3xl shadow-sm overflow-hidden">
+      <div className="bg-background border border-border rounded-3xl shadow-sm overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full text-left border-collapse text-xs">
             <thead>
-              <tr className="bg-stone-50 text-stone-500 font-bold border-b border-stone-100">
+              <tr className="bg-background text-muted-foreground font-bold border-b border-border">
                 <th className="p-4">Name</th>
                 <th className="p-4">Email Address</th>
                 <th className="p-4">Registered Date</th>
@@ -94,21 +94,21 @@ export default function AdminUsersPage() {
                 <th className="p-4 text-right">Actions</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-stone-100">
+            <tbody className="divide-y divide-border">
               {filteredUsers.map((user) => (
-                <tr key={user.uuid} className="hover:bg-stone-50/50 transition-colors">
-                  <td className="p-4 font-bold text-stone-850">{user.name}</td>
-                  <td className="p-4 text-stone-600 font-medium">{user.email}</td>
-                  <td className="p-4 text-stone-500 font-medium">
+                <tr key={user.uuid} className="hover:bg-background/50 transition-colors">
+                  <td className="p-4 font-bold text-foreground">{user.name}</td>
+                  <td className="p-4 text-muted-foreground font-medium">{user.email}</td>
+                  <td className="p-4 text-muted-foreground font-medium">
                     {new Date(user.registeredAt).toLocaleDateString()}
                   </td>
                   <td className="p-4">
                     {user.status === "active" ? (
-                      <Badge className="bg-emerald-100 text-emerald-700 border-emerald-250 rounded-md font-bold">
+                      <Badge className="bg-green-500/10 text-green-600 dark:text-green-400 border-green-500/20 rounded-md font-bold">
                         ACTIVE
                       </Badge>
                     ) : (
-                      <Badge className="bg-red-100 text-red-700 border-red-200 rounded-md font-bold">
+                      <Badge className="bg-red-500/10 text-red-600 dark:text-red-400 border-red-500/20 rounded-md font-bold">
                         DEACTIVATED
                       </Badge>
                     )}
@@ -118,7 +118,7 @@ export default function AdminUsersPage() {
                     <Button
                       onClick={() => handleViewDetail(user)}
                       variant="outline"
-                      className="border-stone-250 hover:bg-stone-50 text-stone-700 size-7 rounded-lg cursor-pointer"
+                      className="border-border hover:bg-background text-foreground size-7 rounded-lg cursor-pointer"
                       title="Inspect Profile"
                       size="icon"
                     >
@@ -130,7 +130,7 @@ export default function AdminUsersPage() {
                       onClick={() => handleToggleStatus(user.uuid)}
                       variant={user.status === "active" ? "destructive" : "outline"}
                       className={`size-7 rounded-lg cursor-pointer ${
-                        user.status !== "active" ? "border-emerald-200 text-emerald-600 hover:bg-emerald-50" : ""
+                        user.status !== "active" ? "border-green-500/20 text-green-600 dark:text-green-400 hover:bg-green-500/10" : ""
                       }`}
                       title={user.status === "active" ? "Deactivate User" : "Reactivate User"}
                       size="icon"
@@ -147,42 +147,42 @@ export default function AdminUsersPage() {
 
       {/* Profile detail modal */}
       <Dialog open={detailOpen} onOpenChange={setDetailOpen}>
-        <DialogContent className="max-w-sm bg-white p-6 rounded-3xl border border-stone-100 text-stone-900 shadow-xl">
+        <DialogContent className="max-w-sm bg-background p-6 rounded-3xl border border-border text-foreground shadow-xl">
           <DialogHeader>
             <DialogTitle className="text-lg font-bold">Student Profile Details</DialogTitle>
-            <DialogDescription className="text-xs text-stone-400 mt-1">
+            <DialogDescription className="text-xs text-muted-foreground mt-1">
               Platform registry database metadata inspector.
             </DialogDescription>
           </DialogHeader>
 
           {selectedUser && (
             <div className="space-y-4 pt-2 text-xs">
-              <div className="bg-stone-50 border border-stone-100 p-4 rounded-2xl space-y-3 font-medium">
+              <div className="bg-background border border-border p-4 rounded-2xl space-y-3 font-medium">
                 <div className="flex justify-between">
-                  <span className="text-stone-400">Account UUID:</span>
-                  <span className="text-stone-750 font-mono">{selectedUser.uuid}</span>
+                  <span className="text-muted-foreground">Account UUID:</span>
+                  <span className="text-foreground font-mono">{selectedUser.uuid}</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-stone-400">Full Name:</span>
-                  <span className="text-stone-850 font-bold">{selectedUser.name}</span>
+                  <span className="text-muted-foreground">Full Name:</span>
+                  <span className="text-foreground font-bold">{selectedUser.name}</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-stone-400">Email Address:</span>
-                  <span className="text-stone-750">{selectedUser.email}</span>
+                  <span className="text-muted-foreground">Email Address:</span>
+                  <span className="text-foreground">{selectedUser.email}</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-stone-400">Account Role:</span>
-                  <Badge variant="outline" className="border-stone-200 font-bold px-1.5 py-0 rounded text-[10px] uppercase text-stone-600">
+                  <span className="text-muted-foreground">Account Role:</span>
+                  <Badge variant="outline" className="border-border font-bold px-1.5 py-0 rounded text-[10px] uppercase text-muted-foreground">
                     student
                   </Badge>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-stone-400">Created At:</span>
-                  <span className="text-stone-600">{new Date(selectedUser.registeredAt).toLocaleString()}</span>
+                  <span className="text-muted-foreground">Created At:</span>
+                  <span className="text-muted-foreground">{new Date(selectedUser.registeredAt).toLocaleString()}</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-stone-400">Account Status:</span>
-                  <Badge className={selectedUser.status === "active" ? "bg-emerald-100 text-emerald-700 border-transparent font-bold" : "bg-red-100 text-red-700 border-transparent font-bold"}>
+                  <span className="text-muted-foreground">Account Status:</span>
+                  <Badge className={selectedUser.status === "active" ? "bg-green-500/10 text-green-600 dark:text-green-400 border-transparent font-bold" : "bg-red-500/10 text-red-600 dark:text-red-400 border-transparent font-bold"}>
                     {selectedUser.status.toUpperCase()}
                   </Badge>
                 </div>
@@ -193,7 +193,7 @@ export default function AdminUsersPage() {
                   onClick={() => handleToggleStatus(selectedUser.uuid)}
                   variant={selectedUser.status === "active" ? "destructive" : "outline"}
                   className={`w-full sm:w-auto h-10 rounded-xl font-bold cursor-pointer text-xs ${
-                    selectedUser.status !== "active" ? "border-emerald-250 text-emerald-700 hover:bg-emerald-50" : ""
+                    selectedUser.status !== "active" ? "border-green-500/20 text-green-600 dark:text-green-400 hover:bg-green-500/10" : ""
                   }`}
                 >
                   {selectedUser.status === "active" ? "Deactivate Account" : "Reactivate Account"}
@@ -201,7 +201,7 @@ export default function AdminUsersPage() {
                 <Button
                   onClick={() => setDetailOpen(false)}
                   variant="ghost"
-                  className="w-full sm:w-auto h-10 hover:bg-stone-50 rounded-xl font-semibold text-stone-500 text-xs"
+                  className="w-full sm:w-auto h-10 hover:bg-background rounded-xl font-semibold text-muted-foreground text-xs"
                 >
                   Close
                 </Button>

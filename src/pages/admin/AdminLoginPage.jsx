@@ -68,7 +68,7 @@ export default function AdminLoginPage() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-stone-900 px-4 py-12 relative overflow-hidden">
+    <div className="min-h-screen flex items-center justify-center bg-card px-4 py-12 relative overflow-hidden">
       {/* Dark theme styled background grid/dots */}
       <div className="absolute inset-0 bg-[radial-gradient(#ffffff0a_1px,transparent_1px)] [background-size:20px_20px] pointer-events-none" />
 
@@ -76,14 +76,14 @@ export default function AdminLoginPage() {
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.4 }}
-        className="w-full max-w-md bg-stone-950 border border-stone-800 p-8 rounded-4xl shadow-2xl shadow-black z-10 text-stone-100"
+        className="w-full max-w-md bg-background border border-border p-8 rounded-4xl shadow-2xl shadow-black z-10 text-foreground"
       >
         <div className="text-center mb-8">
-          <div className="inline-flex items-center justify-center w-12 h-12 bg-stone-850 border border-stone-850 text-brand rounded-2xl mb-4">
+          <div className="inline-flex items-center justify-center w-12 h-12 bg-card border border-border text-brand rounded-2xl mb-4">
             <RiShieldUserLine className="size-6" />
           </div>
           <h2 className="text-2xl font-bold tracking-tight">Admin Access</h2>
-          <p className="text-stone-400 mt-2 text-sm max-w-xs mx-auto">
+          <p className="text-muted-foreground mt-2 text-sm max-w-xs mx-auto">
             This login is for admin and mat_dashboard users only.
           </p>
         </div>
@@ -100,10 +100,10 @@ export default function AdminLoginPage() {
 
         <form onSubmit={handleSubmit} className="space-y-5">
           <div className="space-y-1.5">
-            <Label htmlFor="email" className="text-stone-300 font-medium">Email Address</Label>
+            <Label htmlFor="email" className="text-muted-foreground font-medium">Email Address</Label>
             <div className="relative">
-              <span className="absolute inset-y-0 left-0 pl-3.5 flex items-center text-stone-500">
-                <RiMailLine className="size-4" />
+              <span className="absolute inset-y-0 left-0 pl-4 flex items-center text-muted-foreground">
+                <RiMailLine className="size-5" />
               </span>
               <Input
                 id="email"
@@ -111,7 +111,7 @@ export default function AdminLoginPage() {
                 placeholder="admin@navakarana.com"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="pl-10 h-11 rounded-xl bg-stone-900 border-stone-800 text-stone-100 focus:bg-stone-850 focus:border-stone-700 transition-all placeholder:text-stone-600"
+                className="pl-12 bg-card border-border text-foreground focus:bg-card focus:border-border transition-all placeholder:text-muted-foreground text-base"
               />
             </div>
             {errors.email && (
@@ -120,10 +120,10 @@ export default function AdminLoginPage() {
           </div>
 
           <div className="space-y-1.5">
-            <Label htmlFor="password" className="text-stone-300 font-medium">Password</Label>
+            <Label htmlFor="password" className="text-muted-foreground font-medium">Password</Label>
             <div className="relative">
-              <span className="absolute inset-y-0 left-0 pl-3.5 flex items-center text-stone-500">
-                <RiLockLine className="size-4" />
+              <span className="absolute inset-y-0 left-0 pl-4 flex items-center text-muted-foreground">
+                <RiLockLine className="size-5" />
               </span>
               <Input
                 id="password"
@@ -131,7 +131,7 @@ export default function AdminLoginPage() {
                 placeholder="••••••••"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="pl-10 h-11 rounded-xl bg-stone-900 border-stone-800 text-stone-100 focus:bg-stone-850 focus:border-stone-700 transition-all placeholder:text-stone-600"
+                className="pl-12 bg-card border-border text-foreground focus:bg-card focus:border-border transition-all placeholder:text-muted-foreground text-base"
               />
             </div>
             {errors.password && (
@@ -142,15 +142,15 @@ export default function AdminLoginPage() {
           <Button
             type="submit"
             disabled={isSubmitting}
-            className="w-full h-11 bg-stone-800 hover:bg-stone-700 active:bg-stone-850 border border-stone-750 text-stone-100 rounded-xl font-medium transition-all flex justify-center items-center gap-2 cursor-pointer shadow-lg"
+            className="w-full h-14 bg-card hover:bg-accent active:bg-card border border-border text-foreground rounded-2xl font-bold transition-all flex justify-center items-center gap-2 cursor-pointer shadow-lg text-base"
           >
             {isSubmitting ? "Verifying..." : "Enter Portal"}
             {!isSubmitting && <RiArrowRightLine />}
           </Button>
         </form>
 
-        <div className="mt-8 text-center border-t border-stone-900 pt-4">
-          <Link to="/login" className="text-xs text-stone-500 hover:text-stone-400 transition-colors">
+        <div className="mt-8 text-center border-t border-border pt-4">
+          <Link to="/login" className="text-xs text-muted-foreground hover:text-muted-foreground transition-colors">
             Back to Student Portal
           </Link>
         </div>
