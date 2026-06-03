@@ -6,8 +6,8 @@ import { GoGift } from "react-icons/go";
 const statusConfig = {
   live: { label: "LIVE", className: "bg-brand text-white" },
   scheduled: { label: "Upcoming Class", className: "bg-blue-100 text-blue-700" },
-  ended: { label: "Recording", className: "bg-stone-100 text-stone-500" },
-  cancelled: { label: "Cancelled", className: "bg-red-50 text-red-400" },
+  ended: { label: "Recording", className: "bg-muted text-muted-foreground" },
+  cancelled: { label: "Cancelled", className: "bg-destructive/10 text-red-400 dark:text-red-300" },
 };
 
 const gradients = [
@@ -32,19 +32,19 @@ export default function StreamCard({ stream, index = 0 }) {
   return (
     <Link
       to={`/streams/${uuid}`}
-      className="group rounded-3xl min-h-68 overflow-hidden bg-white border border-stone-100 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-200 flex flex-col"
+      className="group rounded-3xl min-h-68 overflow-hidden bg-background border border-border shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-200 flex flex-col"
     >
       {/* Thumbnail */}
       <div className={`relative h-36 ${thumbnail_url ? "" : `bg-linear-to-br ${gradient}`} flex items-center justify-center overflow-hidden`}>
         {thumbnail_url ? (
           <img src={thumbnail_url} alt={title} className="w-full h-full object-cover" />
         ) : (
-          <RiPlayCircleLine className="text-white/30 text-5xl group-hover:text-white/50 transition-colors" />
+          <RiPlayCircleLine className="text-foreground/30 text-5xl group-hover:text-foreground/50 transition-colors" />
         )}
 
         {/* Status badge */}
         <span className={`absolute top-3 left-3 flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-bold ${cfg.className}`}>
-          {status === "live" && <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />}
+          {status === "live" && <span className="w-1.5 h-1.5 rounded-full bg-background animate-pulse" />}
           {cfg.label}
         </span>
 
@@ -64,11 +64,11 @@ export default function StreamCard({ stream, index = 0 }) {
           <StreamCountdown scheduledAt={scheduled_at} />
         )}
         </div>
-        <h3 className="text-sm font-semibold text-stone-900 leading-snug line-clamp-2">{title}</h3>
+        <h3 className="text-sm font-semibold text-foreground leading-snug line-clamp-2">{title}</h3>
 
         
 
-        <div className="flex items-center justify-between mt-auto pt-2 text-xs text-stone-400">
+        <div className="flex items-center justify-between mt-auto pt-2 text-xs text-muted-foreground">
           {teacher && (
             <span className="flex items-center gap-1">
               <RiUserLine size={11} />

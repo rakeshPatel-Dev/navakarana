@@ -8,8 +8,8 @@ export default function DeleteConfirmModal({ open, onClose, onConfirm, title = "
     <Dialog open={open} onOpenChange={onClose}>
       <DialogContent className="rounded-3xl max-w-md">
         <DialogHeader>
-          <DialogTitle className="text-stone-900">{title}</DialogTitle>
-          <DialogDescription className="text-stone-500">{description}</DialogDescription>
+          <DialogTitle className="text-foreground">{title}</DialogTitle>
+          <DialogDescription className="text-muted-foreground">{description}</DialogDescription>
         </DialogHeader>
         <DialogFooter className="gap-2 mt-2">
           <Button variant="outline" onClick={onClose} className="rounded-xl" disabled={loading}>Cancel</Button>
