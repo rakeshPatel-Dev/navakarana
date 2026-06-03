@@ -1,9 +1,11 @@
 import { motion } from "framer-motion";
+import { Button } from "@/components/ui/button";
 import { RiLiveLine, RiMenuLine, RiCloseLine } from "react-icons/ri";
 import { useState, useEffect } from "react";
 import headerData from "./data/headerData";
 import { Separator } from "@/components/ui/separator";
 import { Link } from "react-router-dom";
+import { AnimatedThemeToggler } from "@/components/ui/animated-theme-toggler";
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
@@ -21,7 +23,7 @@ export default function Header() {
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.5, ease: "easeOut" }}
       className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 ${scrolled
-        ? "bg-white/90 backdrop-blur-md shadow-sm border-b border-stone-100"
+        ? "bg-background/90 backdrop-blur-md shadow-sm shadow-brand/10 border-b border-border"
         : "bg-transparent"
         }`}
     >
@@ -30,7 +32,7 @@ export default function Header() {
         <Link to="/" className="flex items-center gap-2.5 group">
 
           <img src={headerData.logo.src} alt={headerData.logo.alt} className="w-8 h-8 rounded-xl" />
-          <span className="text-[1.05rem] font-bold tracking-tight text-stone-900">
+          <span className="text-[1.05rem] font-bold tracking-tight text-foreground">
             {headerData.platformName}
           </span>
         </Link>
@@ -41,7 +43,16 @@ export default function Header() {
             <Link
               key={item.label}
               to={item.href}
-              className="px-4 py-1.5 text-sm font-medium text-stone-600 hover:text-stone-900 rounded-full hover:bg-stone-100 transition-colors"
+              className="px-4 py-1.5 text-sm font-medium text-muted-foreground hover:text-foreground rounded-full hover:bg-muted transition-colors"
+            >
+              {item.label}
+            </Link>
+          ))}
+          {headerData.protected.map((item) => (
+            <Link
+              key={item.label}
+              to={item.href}
+              className="px-4 py-1.5 text-sm font-medium text-muted-foreground hover:text-foreground rounded-full hover:bg-muted transition-colors"
             >
               {item.label}
             </Link>
@@ -50,17 +61,21 @@ export default function Header() {
 
         {/* Desktop Auth */}
         <div className="hidden md:flex items-center gap-3">
+          <AnimatedThemeToggler className="text-muted-foreground" />
+
+          <Separator orientation="vertical" className="hidden md:block bg-muted-foreground" />
+
           {headerData.auth.map((item) => (
             <Link
               key={item.label}
               to={item.href}
-              className="text-sm font-medium text-stone-600 hover:text-stone-900 transition-colors"
+              className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
             >
               {item.label}
             </Link>
           ))}
 
-          <Separator orientation="vertical" className="hidden md:block h-6 bg-primary/50" />
+          <Separator orientation="vertical" className="hidden md:block bg-muted-foreground" />
 
           <Link
             to={headerData.cta.href}
@@ -72,13 +87,15 @@ export default function Header() {
         </div>
 
         {/* Mobile toggle */}
-        <button
-          className="md:hidden p-2 rounded-xl text-stone-600 hover:bg-stone-100 transition"
+        <Button
+          variant="ghost"
+          size="icon"
+          className="md:hidden rounded-xl"
           onClick={() => setMobileOpen(!mobileOpen)}
           aria-label="Toggle menu"
         >
           {mobileOpen ? <RiCloseLine size={22} /> : <RiMenuLine size={22} />}
-        </button>
+        </Button>
       </div>
 
       {/* Mobile Menu */}
@@ -87,13 +104,13 @@ export default function Header() {
           initial={{ opacity: 0, y: -8 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -8 }}
-          className="md:hidden bg-white border-t border-stone-100 px-6 py-4 flex flex-col gap-2"
+          className="md:hidden bg-background border-t border-border px-6 py-4 flex flex-col gap-2"
         >
           {headerData.nav.map((item) => (
             <Link
               key={item.label}
               to={item.href}
-              className="text-sm font-medium text-stone-700 py-2 border-b border-stone-50"
+              className="text-sm font-medium text-foreground py-2 border-b border-border"
             >
               {item.label}
             </Link>
@@ -103,7 +120,7 @@ export default function Header() {
               <Link
                 key={item.label}
                 to={item.href}
-                className="text-sm font-medium text-stone-600"
+                className="text-sm font-medium text-muted-foreground"
               >
                 {item.label}
               </Link>

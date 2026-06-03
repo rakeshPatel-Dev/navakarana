@@ -8,7 +8,7 @@ export const headerData = {
 	nav: [
 		{ label: "Home", href: "/" },
 		{ label: "Streams", href: "/streams" },
-		{ label: "Mat Studio", href: "/mat/info" },
+		{ label: "Custom Mat", href: "/mat/info" },
 	],
 	// Auth-related links (shown when user is not authenticated)
 	auth: [
@@ -17,10 +17,10 @@ export const headerData = {
 	],
 	// Links that require authentication (components can use `auth: true` to gate)
 	protected: [
-		{ label: "My Practice", href: "/my-library", auth: true },
+		{ label: "My Library", href: "/my-library" },
 	],
 	// Optional call-to-action (used for teacher-facing flows)
-	cta: { label: "Teach Yoga", href: "/teacher/dashboard", auth: true },
+	cta: { label: "Teach Yoga", href: "/teacher/dashboard" },
 };
 
 export default headerData;
