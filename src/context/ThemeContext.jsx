@@ -23,6 +23,9 @@ const mockSettings = {
 
 export function ThemeProvider({ children }) {
   const [settings, setSettings] = useState(mockSettings);
+  
+  // Dark mode state
+  const [mode, setMode] = useState(() => localStorage.getItem("app-theme-mode") || "system");
 
   useEffect(() => {
     // Apply theme colors as CSS custom properties
@@ -35,8 +38,32 @@ export function ThemeProvider({ children }) {
     });
   }, [settings]);
 
+  useEffect(() => {
+    const root = window.document.documentElement;
+    root.classList.remove("light", "dark");
+
+    if (mode === "system") {
+      const systemTheme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+      root.classList.add(systemTheme);
+      return;
+    }
+
+    root.classList.add(mode);
+  }, [mode]);
+
+  const updateMode = (newMode) => {
+    localStorage.setItem("app-theme-mode", newMode);
+    setMode(newMode);
+  };
+
   return (
-    <ThemeContext.Provider value={{ settings, platform_name: settings.platform_name, logo_url: settings.logo_url }}>
+    <ThemeContext.Provider value={{ 
+      settings, 
+      platform_name: settings.platform_name, 
+      logo_url: settings.logo_url,
+      mode,
+      setMode: updateMode
+    }}>
       {children}
     </ThemeContext.Provider>
   );

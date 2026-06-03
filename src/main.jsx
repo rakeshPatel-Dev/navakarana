@@ -6,19 +6,21 @@ import { Provider } from 'react-redux';
 import store from '@/store/store';
 import { ThemeProvider } from './context/ThemeContext';
 import { AuthProvider } from './context/AuthContext';
-// import { AdminAuthProvider } from './context/AdminAuthContext';
+import { AdminAuthProvider } from './context/AdminAuthContext';
+import { Toaster } from 'sonner';
 
 createRoot(document.getElementById('root')).render(
   <ThemeProvider>
-    {/* <AdminAuthProvider> */}
+    <AdminAuthProvider>
 
-    <AuthProvider>
-      <Provider store={store}>
-        <BrowserRouter>
-          <App />
-        </BrowserRouter>
-      </Provider>
-    </AuthProvider>
-    {/* </AdminAuthProvider> */}
+      <AuthProvider>
+        <Provider store={store}>
+          <BrowserRouter>
+            <Toaster position="top-right" duration={3000} closeButton />
+            <App />
+          </BrowserRouter>
+        </Provider>
+      </AuthProvider>
+    </AdminAuthProvider>
   </ThemeProvider>
 )

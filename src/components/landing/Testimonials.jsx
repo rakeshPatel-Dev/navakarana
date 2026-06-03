@@ -1,5 +1,7 @@
 import { motion } from "framer-motion";
 import { RiDoubleQuotesL, RiStarFill } from "react-icons/ri";
+import { User } from "lucide-react";
+import SectionBadge from "./components/SectionBadge";
 
 const testimonials = [
   {
@@ -33,33 +35,26 @@ const testimonials = [
 
 export default function Testimonials() {
   return (
-    <section id="testimonials" className="py-24 bg-white relative overflow-hidden">
+    <section id="testimonials" className="py-24 bg-background relative overflow-hidden">
       {/* Top diagonal shape */}
       <div
         aria-hidden
-        className="absolute top-0 inset-x-0 h-px bg-linear-to-r from-transparent via-stone-200 to-transparent pointer-events-none"
+        className="absolute top-0 inset-x-0 h-px bg-linear-to-r from-transparent via-border to-transparent pointer-events-none"
       />
       <div
         aria-hidden
-        className="absolute -top-24 right-12 w-48 h-48 rounded-full bg-red-50 blur-3xl opacity-80 pointer-events-none"
+        className="absolute -top-24 right-12 w-48 h-48 rounded-full bg-brand/5 blur-3xl opacity-80 pointer-events-none"
       />
 
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center max-w-xl mx-auto mb-14">
-          <motion.span
-            initial={{ opacity: 0, y: 12 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="inline-block px-4 py-1.5 rounded-full bg-brand/10 text-brand text-xs font-semibold tracking-wide mb-4"
-          >
-            Student Stories
-          </motion.span>
+            <SectionBadge icon={User} text="Student Stories" />
           <motion.h2
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="text-4xl font-bold text-stone-900 tracking-tight"
+            className="text-4xl font-bold text-foreground tracking-tight"
           >
             Loved by practitioners
           </motion.h2>
@@ -73,7 +68,7 @@ export default function Testimonials() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-30px" }}
               transition={{ duration: 0.5, delay: i * 0.1 }}
-              className="relative rounded-3xl p-7 bg-stone-50 border border-stone-100 hover:border-stone-200 hover:shadow-md transition-all duration-200"
+              className="relative rounded-3xl p-7 bg-background border border-border hover:border-border hover:shadow-md shadow-brand/10 transition-all duration-200"
             >
               {/* Quote icon */}
               <RiDoubleQuotesL className="text-brand/20 text-4xl absolute top-6 right-6" />
@@ -85,22 +80,22 @@ export default function Testimonials() {
                 ))}
               </div>
 
-              <p className="text-stone-600 text-sm leading-relaxed mb-6">
+              <p className="text-muted-foreground text-sm leading-relaxed mb-6">
                 "{t.quote}"
               </p>
 
               <div className="flex items-center gap-3">
                 <span
-                  className="w-10 h-10 rounded-2xl text-white text-xs font-bold flex items-center justify-center"
+                  className="w-10 h-10 rounded-2xl text-foreground text-xs font-bold flex items-center justify-center"
                   style={{ backgroundColor: t.color }}
                 >
                   {t.avatar}
                 </span>
                 <div>
-                  <p className="text-sm font-semibold text-stone-900">
+                  <p className="text-sm font-semibold text-foreground">
                     {t.name}
                   </p>
-                  <p className="text-xs text-stone-400">{t.role}</p>
+                  <p className="text-xs text-muted-foreground">{t.role}</p>
                 </div>
               </div>
             </motion.div>

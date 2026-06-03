@@ -1,5 +1,4 @@
 import { motion } from "framer-motion";
-import { RiArrowRightLine, RiLiveLine } from "react-icons/ri";
 
 const stats = [
   { value: "2,400+", label: "Active Practitioners" },
@@ -10,7 +9,7 @@ const stats = [
 
 export default function Stats() {
   return (
-    <section className="py-20 bg-stone-50 border-y border-stone-100">
+    <section className="py-20 bg-background border-b border-border">
       <div className="max-w-7xl mx-auto px-6">
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
           {stats.map((s, i) => (
@@ -22,10 +21,10 @@ export default function Stats() {
               transition={{ duration: 0.45, delay: i * 0.1 }}
               className="text-center"
             >
-              <p className="text-4xl font-bold text-stone-900 tracking-tight">
+              <p className="text-4xl font-bold text-foreground tracking-tight">
                 {s.value}
               </p>
-              <p className="text-sm text-stone-500 mt-1">{s.label}</p>
+              <p className="text-sm text-muted-foreground mt-1">{s.label}</p>
             </motion.div>
           ))}
         </div>

@@ -6,7 +6,7 @@ import { streams } from "@/components/landing/data/streams";
 
 export default function LiveStreams() {
   return (
-    <section id="streams" className=" bg-stone-50/80 relative overflow-hidden">
+    <section id="streams" className=" bg-background/80 relative overflow-hidden">
       {/* Decorative shape */}
       <div
         aria-hidden
@@ -29,7 +29,7 @@ export default function LiveStreams() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.1 }}
-              className="text-3xl font-bold text-stone-900 tracking-tight"
+              className="text-3xl font-bold text-foreground tracking-tight"
             >
               Featured Live Classes
             </motion.h2>
@@ -54,14 +54,14 @@ export default function LiveStreams() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-30px" }}
               transition={{ duration: 0.45, delay: i * 0.09 }}
-              className="group rounded-3xl overflow-hidden bg-white border border-stone-100 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-200 cursor-pointer"
+              className="group rounded-3xl overflow-hidden bg-background border border-border shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-200 cursor-pointer"
             >
               {/* Thumbnail */}
               <div className={`relative h-36 ${stream.thumbnail_url ? "bg-cover" : `bg-linear-to-br ${stream.gradient}`}`} style={{ backgroundImage: stream.thumbnail_url ? `url(${stream.thumbnail_url})` : undefined }}>
-                <RiPlayCircleLine className="text-white/40 text-5xl group-hover:text-white/60 transition-colors" />
+                <RiPlayCircleLine className="text-foreground/40 text-5xl group-hover:text-foreground/60 transition-colors" />
                 {stream.live && (
                   <span className="absolute top-3 left-3 flex items-center gap-1.5 bg-brand text-white text-[10px] font-bold px-2.5 py-1 rounded-full">
-                    <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
+                    <span className="w-1.5 h-1.5 rounded-full bg-background animate-pulse" />
                     LIVE
                   </span>
                 )}
@@ -76,10 +76,10 @@ export default function LiveStreams() {
                 <span className="text-[10px] font-semibold text-brand uppercase tracking-wider">
                   {stream.category}
                 </span>
-                <h3 className="text-sm font-semibold text-stone-900 mt-1 leading-snug line-clamp-2">
+                <h3 className="text-sm font-semibold text-foreground mt-1 leading-snug line-clamp-2">
                   {stream.title}
                 </h3>
-                <div className="flex items-center justify-between mt-3 text-xs text-stone-400">
+                <div className="flex items-center justify-between mt-3 text-xs text-muted-foreground">
                   <span className="flex items-center gap-1">
                     <RiUserLine size={11} />
                     {stream.host}

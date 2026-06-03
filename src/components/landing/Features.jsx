@@ -7,6 +7,8 @@ import {
   RiTimeLine,
   RiShieldCheckLine,
 } from "react-icons/ri";
+import SectionBadge from "./components/SectionBadge";
+import { MessageCircleQuestionMark } from "lucide-react";
 
 const features = [
   {
@@ -58,32 +60,24 @@ const cardVariants = {
 
 export default function Features() {
   return (
-    <section id="features" className="py-24 bg-white relative overflow-hidden">
+    <section id="features" className="py-24 bg-background relative overflow-hidden">
       {/* Subtle background shape */}
       <div
         aria-hidden
-        className="absolute top-0 right-0 rounded-full bg-red-50 blur-3xl opacity-60 pointer-events-none"
+        className="absolute top-0 right-0 rounded-full bg-brand/5 blur-3xl opacity-60 pointer-events-none"
         style={{ width: 300, height: 300 }}
       />
 
       <div className="max-w-7xl mx-auto px-6">
         {/* Header */}
         <div className="text-center max-w-2xl mx-auto mb-16">
-          <motion.span
-            initial={{ opacity: 0, y: 12 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="inline-block px-4 py-1.5 rounded-full bg-brand/10 text-brand text-xs font-semibold tracking-wide mb-4"
-          >
-            Why Navakarana?
-          </motion.span>
+          <SectionBadge icon={MessageCircleQuestionMark} text="Why Navakarana?" />
           <motion.h2
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className="text-4xl font-bold text-stone-900 tracking-tight"
+            className="text-4xl font-bold text-foreground tracking-tight"
           >
             Everything you need for a steady yoga practice
           </motion.h2>
@@ -92,7 +86,7 @@ export default function Features() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="mt-4 text-stone-500 text-base leading-relaxed"
+            className="mt-4 text-muted-foreground text-base leading-relaxed"
           >
             Built for practitioners who want live instruction, personal alignment, and a mat that fits the way they move.
           </motion.p>
@@ -108,27 +102,27 @@ export default function Features() {
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true, margin: "-40px" }}
-              className={`group rounded-3xl p-7 border transition-all duration-200 hover:shadow-lg hover:-translate-y-0.5 ${f.accent
+              className={`group rounded-3xl p-7 border transition-all duration-200 hover:shadow-lg shadow-brand/10 hover:-translate-y-0.5 ${f.accent
                   ? "bg-brand text-white border-brand"
-                  : "bg-white border-stone-100 hover:border-stone-200"
+                  : "bg-card border-border hover:border-border"
                 }`}
             >
               <span
-                className={`inline-flex items-center justify-center w-11 h-11 rounded-2xl mb-5 ${f.accent
+                className={`inline-flex items-center justify-center transition-colors duration-200 w-11 h-11 rounded-2xl mb-5 ${f.accent
                     ? "bg-white/20 text-white"
-                    : "bg-stone-50 text-brand group-hover:bg-red-50"
+                    : "bg-muted text-brand group-hover:bg-brand/10 "
                   }`}
               >
                 <f.icon size={22} />
               </span>
               <h3
-                className={`text-base font-semibold mb-2 ${f.accent ? "text-white" : "text-stone-900"
+                className={`text-base font-semibold mb-2 ${f.accent ? "text-white" : "text-foreground"
                   }`}
               >
                 {f.title}
               </h3>
               <p
-                className={`text-sm leading-relaxed ${f.accent ? "text-white/80" : "text-stone-500"
+                className={`text-sm leading-relaxed ${f.accent ? "text-white/80" : "text-muted-foreground"
                   }`}
               >
                 {f.desc}

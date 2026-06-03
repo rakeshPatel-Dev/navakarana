@@ -5,6 +5,8 @@ import {
   RiStarFill,
 } from "react-icons/ri";
 import { Link } from "react-router-dom";
+import SectionBadge from "./components/SectionBadge";
+import { GoDotFill } from "react-icons/go";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 28 },
@@ -24,14 +26,14 @@ const avatars = [
 
 export default function Hero() {
   return (
-    <section className="relative min-h-150 flex items-center overflow-hidden pt-15 bg-linear-to-br from-stone-50 via-white to-emerald-50/25">
+    <section className="relative min-h-150 flex items-center overflow-hidden pt-15 bg-background">
       {/* Grid Pattern at Left */}
       <div
         aria-hidden
         className="absolute inset-0 pointer-events-none z-0"
       >
         <div
-          className="absolute skew-6 inset-0 bg-[linear-gradient(to_right,#e5e7eb_1px,transparent_1px),linear-gradient(to_bottom,#e5e7eb_1px,transparent_1px)] bg-size-[50px_50px]"
+          className="absolute skew-6 inset-0 bg-[linear-gradient(to_right,var(--border)_1px,transparent_1px),linear-gradient(to_bottom,var(--border)_1px,transparent_1px)] bg-size-[50px_50px]"
           style={{
             maskImage: 'radial-gradient(circle at center, black 0%, black 40%, transparent 80%, transparent 100%)',
             WebkitMaskImage: 'radial-gradient(circle at center, black 0%, black 40%, transparent 80%, transparent 100%)'
@@ -54,16 +56,7 @@ export default function Hero() {
         {/* Left Content */}
         <div className="flex flex-col items-center justify-center gap-7">
           {/* Live badge */}
-          <motion.div
-            variants={fadeUp}
-            initial="hidden"
-            animate="visible"
-            custom={0}
-            className="inline-flex items-center gap-2 self-center px-4 py-1.5 rounded-full bg-brand/10 border border-brand/20 text-brand text-xs font-semibold tracking-wide"
-          >
-            <span className="w-2 h-2 rounded-full bg-brand animate-pulse" />
-            Yoga Practice Platform
-          </motion.div>
+         <SectionBadge icon={GoDotFill} iconClassName="animate-pulse text-brand" text="Yoga Practice Platform" />
 
           {/* Headline */}
           <motion.h1
@@ -84,7 +77,7 @@ export default function Hero() {
             initial="hidden"
             animate="visible"
             custom={2}
-            className="text-lg text-center text-stone-500 leading-relaxed max-w-2xl"
+            className="text-lg text-center text-muted-foreground leading-relaxed max-w-2xl"
           >
             Join live yoga classes from certified instructors and order custom mats precision-crafted to your measurements for better alignment, comfort, and flow.
           </motion.p>
@@ -108,7 +101,7 @@ export default function Hero() {
             <Link
               to="/teacher/dashboard"
               id="hero-create-stream"
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-2xl bg-white border border-stone-200 text-stone-700 font-semibold text-sm hover:bg-stone-50 hover:border-stone-300 transition-colors"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-2xl bg-background border border-border text-foreground font-semibold text-sm hover:bg-background hover:border-border transition-colors"
             >
               <RiLiveLine className="text-brand" />
               Teach Yoga
@@ -127,14 +120,14 @@ export default function Hero() {
               {avatars.map((a) => (
                 <span
                   key={a.initials}
-                  className="w-8 h-8 rounded-full border-2 border-white text-white text-[10px] font-bold flex items-center justify-center"
+                  className="w-8 h-8 rounded-full border-2 border-background text-white text-[10px] font-bold flex items-center justify-center"
                   style={{ backgroundColor: a.color }}
                 >
                   {a.initials}
                 </span>
               ))}
             </div>
-            <div className="text-sm text-stone-500">
+            <div className="text-sm text-muted-foreground">
               <div className="flex items-center gap-1 text-amber-500 font-semibold">
                 <RiStarFill />
                 <RiStarFill />

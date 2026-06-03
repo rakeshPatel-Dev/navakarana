@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ChevronLeft, ChevronRight, Clock, Eye } from "lucide-react";
+import { ChevronLeft, ChevronRight, Clock, Eye, Star } from "lucide-react";
+import SectionBadge from "./landing/components/SectionBadge";
 
 const textContainerVariants = {
   hidden: { opacity: 0 },
@@ -116,7 +117,7 @@ export default function StreamSlideshow({ streams = [] }) {
   if (!streams || streams.length === 0) {
     return (
       <div className="relative min-h-screen w-full bg-zinc-950 flex items-center justify-center rounded-2xl">
-        <p className="text-white/40 text-sm font-mono tracking-widest uppercase">No streams available</p>
+        <p className="text-foreground/40 text-sm font-mono tracking-widest uppercase">No streams available</p>
       </div>
     );
   }
@@ -181,27 +182,15 @@ export default function StreamSlideshow({ streams = [] }) {
               className="flex items-center gap-2 px-3 py-1.5 rounded-full"
               style={{ background: "rgba(220,38,38,0.85)", backdropFilter: "blur(12px)" }}
             >
-              <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
-              <span className="text-white text-xs font-semibold tracking-widest uppercase">Live</span>
+              <span className="w-1.5 h-1.5 rounded-full bg-background animate-pulse" />
+              <span className="text-foreground text-xs font-semibold tracking-widest uppercase">Live</span>
             </motion.div>
           ) : (
             <div key="offline" />
           )}
         </AnimatePresence>
 
-        {/* Wordmark / brand label */}
-        <div
-          className="px-4 py-2 rounded-full text-xs font-semibold tracking-widest uppercase"
-          style={{
-            background: "rgba(150, 25, 25,0.2)",
-            backdropFilter: "blur(16px)",
-            border: "1px solid rgba(150, 25, 25,0.3)",
-            color: "rgba(255,255,255,0.7)",
-            letterSpacing: "0.14em",
-          }}
-        >
-          Featured Streams
-        </div>
+            <SectionBadge text="Featured Streams" icon={Star} />
 
         {/* Slide counter */}
             {/* <div
