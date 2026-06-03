@@ -65,16 +65,16 @@ export default function StreamsPage() {
   return (
     <div className="bg-background min-h-screen py-30 px-4 md:px-8 max-w-7xl mx-auto">
       {/* Page Header */}
-      <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-8 border-b border-stone-200/60 pb-6">
+      <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-8 border-b border-border/60 pb-6">
         <div>
           <span className="text-brand font-bold text-xs uppercase tracking-widest">Explore Streams</span>
-          <h1 className="text-3xl md:text-4xl font-extrabold text-stone-900 mt-1">Live & Recorded Yoga Sessions</h1>
-          <p className="text-stone-500 mt-2">Browse the directory of guided stream, breathwork sessions, and meditation practices hosted by expert instructors.</p>
+          <h1 className="text-3xl md:text-4xl font-extrabold text-foreground mt-1">Live & Recorded Yoga Sessions</h1>
+          <p className="text-muted-foreground mt-2">Browse the directory of guided stream, breathwork sessions, and meditation practices hosted by expert instructors.</p>
         </div>
 
         {/* Search Input */}
         <div className="relative w-full md:w-80 shrink-0">
-          <RiSearchLine className="absolute left-3 top-1/2 -translate-y-1/2 text-stone-400 size-4" />
+          <RiSearchLine className="absolute left-3.5 top-1/2 -translate-y-1/2 text-muted-foreground size-5" />
           <Input
             type="text"
             placeholder="Search stream or instructor..."
@@ -83,14 +83,14 @@ export default function StreamsPage() {
               setSearch(e.target.value);
               setCurrentPage(1);
             }}
-            className="pl-9 pr-4 py-2 bg-white border-stone-200 rounded-xl h-10 w-full shadow-sm text-stone-700 placeholder:text-stone-400"
+            className="pl-10 text-sm"
           />
         </div>
       </div>
 
       {/* Filter Row */}
       <div className="flex items-center gap-3 overflow-x-auto pb-4 mb-6 scrollbar-none">
-        <span className="text-stone-500 text-xs font-semibold uppercase flex items-center gap-1 shrink-0 mr-2">
+        <span className="text-muted-foreground text-xs font-semibold uppercase flex items-center gap-1 shrink-0 mr-2">
           <RiFilter2Line /> Filters:
         </span>
         {[
@@ -100,17 +100,18 @@ export default function StreamsPage() {
           { id: "ended", label: "Ended & Recordings", icon: <BiVideoRecording /> },
           { id: "free", label: "Free Streams", icon: <GoGift /> }
         ].map((filter) => (
-          <button
+          <Button
             key={filter.id}
+            variant="outline"
             onClick={() => handleFilterChange(filter.id)}
             className={`px-4 py-1.5 rounded-full text-xs font-semibold transition-all whitespace-nowrap cursor-pointer flex items-center gap-1 border ${activeFilter === filter.id
-              ? "bg-stone-900 border-stone-900 text-white shadow-sm"
-              : "bg-white border-stone-200 text-stone-600 hover:text-stone-900 hover:border-stone-300"
+              ? "bg-brand border-foreground text-white shadow-sm"
+              : "bg-background border-border text-muted-foreground hover:text-foreground hover:border-border"
               }`}
           >
             {filter.icon}
             {filter.label}
-          </button>
+          </Button>
         ))}
       </div>
 
@@ -137,7 +138,7 @@ export default function StreamsPage() {
         <Empty className=" border-dashed border border-muted-foreground rounded-3xl py-16 mt-10">
           <EmptyHeader>
             <EmptyMedia>
-              <CiStreamOff className="size-12 text-stone-300 mx-auto" stroke="50" />
+              <CiStreamOff className="size-12 text-muted-foreground mx-auto" stroke="50" />
             </EmptyMedia>
             <EmptyTitle>No Streams found</EmptyTitle>
             <EmptyDescription>Try adjusting your filters or search term.</EmptyDescription>
@@ -152,33 +153,35 @@ export default function StreamsPage() {
 
       {/* Pagination */}
       {totalPages > 1 && (
-        <div className="flex items-center justify-between border-t border-stone-200/60 mt-10 pt-6">
-          <p className="text-xs text-stone-500">
-            Showing <span className="font-semibold text-stone-800">{(currentPage - 1) * itemsPerPage + 1}</span> to{" "}
-            <span className="font-semibold text-stone-800">
+        <div className="flex items-center justify-between border-t border-border/60 mt-10 pt-6">
+          <p className="text-xs text-muted-foreground">
+            Showing <span className="font-semibold text-foreground">{(currentPage - 1) * itemsPerPage + 1}</span> to{" "}
+            <span className="font-semibold text-foreground">
               {Math.min(currentPage * itemsPerPage, sortedStreams.length)}
             </span>{" "}
-            of <span className="font-semibold text-stone-800">{sortedStreams.length}</span> results
+            of <span className="font-semibold text-foreground">{sortedStreams.length}</span> results
           </p>
 
           <div className="flex items-center gap-2">
-            <button
+            <Button
+              variant="outline"
               onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
               disabled={currentPage === 1}
-              className="p-2 border border-stone-200 rounded-xl bg-white hover:bg-stone-50 disabled:opacity-50 disabled:pointer-events-none transition-colors cursor-pointer text-stone-600"
+              className="p-2 border border-border rounded-xl bg-background hover:bg-muted disabled:opacity-50 disabled:pointer-events-none transition-colors cursor-pointer text-muted-foreground"
             >
               <RiArrowLeftSLine className="size-4" />
-            </button>
-            <span className="text-xs font-semibold text-stone-700 px-2">
+            </Button>
+            <span className="text-xs font-semibold text-foreground px-2">
               Page {currentPage} of {totalPages}
             </span>
-            <button
+            <Button
+              variant="outline"
               onClick={() => setCurrentPage((p) => Math.min(totalPages, p + 1))}
               disabled={currentPage === totalPages}
-              className="p-2 border border-stone-200 rounded-xl bg-white hover:bg-stone-50 disabled:opacity-50 disabled:pointer-events-none transition-colors cursor-pointer text-stone-600"
+              className="p-2 border border-border rounded-xl bg-background hover:bg-muted disabled:opacity-50 disabled:pointer-events-none transition-colors cursor-pointer text-muted-foreground"
             >
               <RiArrowRightSLine className="size-4" />
-            </button>
+            </Button>
           </div>
         </div>
       )}

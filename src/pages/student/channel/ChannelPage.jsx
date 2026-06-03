@@ -141,7 +141,7 @@ export default function ChannelPage() {
   }, [teacher.name]);
 
   return (
-    <div className="bg-stone-50 min-h-screen py-30 px-4 md:px-8">
+    <div className="bg-background min-h-screen py-30 px-4 md:px-8">
       <div className="max-w-6xl mx-auto space-y-8">
         {/* Banner Hero Area */}
         <div className="bg-linear-to-r from-stone-900 via-stone-850 to-brand-dark rounded-4xl p-8 md:p-12 text-white relative overflow-hidden shadow-lg">
@@ -216,11 +216,11 @@ export default function ChannelPage() {
 
         {/* Classes Section */}
         <div className="space-y-6">
-          <div className="border-b border-stone-200/60 pb-4">
-            <h2 className="text-xl font-extrabold text-stone-900 flex items-center gap-2">
+          <div className="border-b border-border pb-4">
+            <h2 className="text-xl font-extrabold text-foreground flex items-center gap-2">
               <RiVideoChatLine className="text-brand size-5" /> Active & Upcoming Sessions
             </h2>
-            <p className="text-xs text-stone-500 mt-1">Browse all stream transmissions and recordings hosted on this channel.</p>
+            <p className="text-xs text-muted-foreground mt-1">Browse all stream transmissions and recordings hosted on this channel.</p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

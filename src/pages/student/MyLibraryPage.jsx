@@ -87,34 +87,34 @@ export default function MyLibraryPage() {
   };
 
   return (
-    <div className="bg-stone-50 min-h-screen py-30 px-4 md:px-8">
+    <div className="bg-background min-h-screen py-30 px-4 md:px-8">
       <div className="max-w-5xl mx-auto space-y-6">
-        <div className="border-b border-stone-200/60 pb-5 flex items-center justify-between">
+        <div className="border-b border-border/60 pb-5 flex items-center justify-between">
           <div>
             <span className="text-brand font-bold text-xs uppercase tracking-widest">My Account</span>
-            <h1 className="text-3xl font-extrabold text-stone-900 mt-1 flex items-center gap-2">
+            <h1 className="text-3xl font-extrabold text-foreground mt-1 flex items-center gap-2">
               <RiBookOpenLine /> My Learning Library
             </h1>
-            <p className="text-stone-500 text-sm mt-1">Access your purchased live classes, class recordings, and upcoming sessions.</p>
+            <p className="text-muted-foreground text-sm mt-1">Access your purchased live classes, class recordings, and upcoming sessions.</p>
           </div>
 
 
           {/* Search Input */}
           <div className="relative w-full md:w-80 shrink-0">
-            <RiSearchLine className="absolute left-3 top-1/2 -translate-y-1/2 text-stone-400 size-4" />
+            <RiSearchLine className="absolute left-3.5 top-1/2 -translate-y-1/2 text-muted-foreground size-5" />
             <Input
               type="text"
               placeholder="Search stream by title or instructor..."
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              className="pl-9 pr-4 py-2 bg-white border-stone-200 rounded-xl h-10 w-full shadow-sm text-stone-700 placeholder:text-stone-400"
+              className="pl-10 text-sm"
             />
           </div>
         </div>
 
         {/* Filter Row */}
         <div className="flex items-center gap-3 overflow-x-auto pb-4 mb-6 scrollbar-none">
-          <span className="text-stone-500 text-xs font-semibold uppercase flex items-center gap-1 shrink-0 mr-2">
+          <span className="text-muted-foreground text-xs font-semibold uppercase flex items-center gap-1 shrink-0 mr-2">
             <RiFilter2Line /> Filters:
           </span>
           {[
@@ -123,17 +123,18 @@ export default function MyLibraryPage() {
             { id: "scheduled", label: "Scheduled", icon: <FaRegCalendarAlt /> },
             { id: "ended", label: "Ended & Recordings", icon: <BiVideoRecording /> },
           ].map((filter) => (
-            <button
+            <Button
               key={filter.id}
+              variant="outline"
               onClick={() => handleFilter(filter.id)}
               className={`px-4 py-1.5 rounded-full text-xs font-semibold transition-all whitespace-nowrap cursor-pointer flex items-center gap-1 border ${activeFilter === filter.id
-                ? "bg-stone-900 border-stone-900 text-white shadow-sm"
-                : "bg-white border-stone-200 text-stone-600 hover:text-stone-900 hover:border-stone-300"
+                ? "bg-brand border-foreground text-white shadow-sm"
+                : "bg-background border-border text-muted-foreground hover:text-foreground hover:border-border"
                 }`}
             >
               {filter.icon}
               {filter.label}
-            </button>
+            </Button>
           ))}
         </div>
 
@@ -147,11 +148,11 @@ export default function MyLibraryPage() {
                   key={item.uuid}
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
-                  className="bg-white border border-stone-100 rounded-3xl p-5 md:p-6 shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-5 transition-all hover:shadow-md hover:border-stone-200/50"
+                  className="bg-background border border-border rounded-3xl p-5 md:p-6 shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-5 transition-all hover:shadow-md hover:border-border/50"
                 >
                   <div className="flex items-start md:items-center gap-4">
                     {/* Icon/Thumbnail area */}
-                    <div className="size-16 rounded-2xl bg-linear-to-tr from-stone-200 to-stone-100 flex items-center justify-center shrink-0 border border-stone-200/40 text-stone-400">
+                    <div className="size-16 rounded-2xl bg-linear-to-tr from-muted to-muted/50 flex items-center justify-center shrink-0 border border-border/40 text-muted-foreground">
                       <RiFolderVideoLine className="size-8" />
                     </div>
 
@@ -159,7 +160,7 @@ export default function MyLibraryPage() {
                       <div className="flex flex-wrap items-center gap-2">
                         <Badge
                           variant="outline"
-                          className="border-stone-200 text-stone-600 rounded-md font-semibold text-[10px]"
+                          className="border-border text-muted-foreground rounded-md font-semibold text-[10px]"
                         >
                           {item.purchaseType}
                         </Badge>
@@ -176,24 +177,24 @@ export default function MyLibraryPage() {
                           </Badge>
                         )}
                         {item.status === "ended" && (
-                          <Badge className="bg-stone-600 hover:bg-stone-700 text-white border-transparent text-[10px] font-bold">
+                          <Badge className="bg-accent hover:bg-accent text-foreground border-transparent text-[10px] font-bold">
                             <BiVideoRecording />
                             RECORDING
                           </Badge>
                         )}
                       </div>
 
-                      <h3 className="font-extrabold text-stone-900 text-base md:text-lg leading-snug">
+                      <h3 className="font-extrabold text-foreground text-base md:text-lg leading-snug">
                         {item.title}
                       </h3>
 
-                      <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-stone-500 font-medium">
-                        <span>Instructor: <span className="font-semibold text-stone-700">{item.teacherName}</span></span>
-                        <span className="hidden sm:inline text-stone-300">•</span>
+                      <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-muted-foreground font-medium">
+                        <span>Instructor: <span className="font-semibold text-foreground">{item.teacherName}</span></span>
+                        <span className="hidden sm:inline text-muted-foreground">•</span>
                         <span className="flex items-center gap-1">
-                          <RiReceiptLine /> Paid: <span className="font-semibold text-stone-700">${item.amountPaid}</span>
+                          <RiReceiptLine /> Paid: <span className="font-semibold text-foreground">${item.amountPaid}</span>
                         </span>
-                        <span className="hidden sm:inline text-stone-300">•</span>
+                        <span className="hidden sm:inline text-muted-foreground">•</span>
                         <span>Purchased: {new Date(item.purchasedAt).toLocaleDateString()}</span>
                       </div>
                     </div>
@@ -213,7 +214,7 @@ export default function MyLibraryPage() {
                       <Button
                         asChild
                         variant="outline"
-                        className="w-full md:w-auto border-stone-200 hover:bg-stone-50 text-stone-600 font-bold h-10 px-5 rounded-xl cursor-pointer"
+                        className="w-full md:w-auto border-border hover:bg-background text-muted-foreground font-bold h-10 px-5 rounded-xl cursor-pointer"
                       >
                         <Link to={`/streams/${item.uuid}`}>
                           View Schedule
@@ -229,7 +230,7 @@ export default function MyLibraryPage() {
           <Empty className=" border-dashed border border-muted-foreground rounded-3xl py-16 mt-10">
             <EmptyHeader>
               <EmptyMedia>
-                <CiStreamOff className="size-12 text-stone-300 mx-auto" stroke="50" />
+                <CiStreamOff className="size-12 text-muted-foreground mx-auto" stroke="50" />
               </EmptyMedia>
               <EmptyTitle>No Streams found</EmptyTitle>
               <EmptyDescription>Try adjusting your filters or search term.</EmptyDescription>

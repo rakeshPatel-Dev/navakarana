@@ -104,3 +104,88 @@ export const MOCK_STREAMS = [
         teacher: { uuid: "teacher-sarah", name: "Sarah Connor" }
     }
 ];
+
+export const STREAMS_DB = {
+    "live-stream-1": {
+        uuid: "live-stream-1",
+        title: "Navakarana Yoga Vinyasa: Strength and Alignment",
+        description: "An intensive live session focused on developing core stability, strength, and correct anatomical alignment. Perfect for intermediate practitioners looking to deepen their practice.\n\nIn this session, we will flow through an alignment-based practice focusing on activating the deep core, pelvic floor stabilizers, and upper body support. You will receive real-time cues, alignment adjustments recommendations, and modifications.",
+        category: "Vinyasa",
+        thumbnail_url: null,
+        status: "live",
+        is_free: true,
+        price: "0.00",
+        scheduled_at: new Date(Date.now() - 3600000).toISOString(),
+        purchases_count: 42,
+        teacher: { uuid: "teacher-arjun", name: "Arjun Mehta", slug: "arjun-mehta" }
+    },
+    "live-stream-2": {
+        uuid: "live-stream-2",
+        title: "Pranayama & Breathwork Foundation",
+        description: "Deep dive into breathwork techniques. Learn how to control energy flow, quiet the mind, and increase vital lung capacity through guided breath sequences.\n\nPranayama is the yogic practice of breath control. In Sanskrit, prana means vital life force, and ayama means to extend or draw out. By learning how to consciously regulate your breathing patterns, you can directly influence your nervous system—calming a hyperactive mind, relieving stress, and bringing physical harmony to the body.",
+        category: "Pranayama",
+        thumbnail_url: null,
+        status: "live",
+        is_free: false,
+        price: "15.00",
+        scheduled_at: new Date(Date.now() - 1800000).toISOString(),
+        purchases_count: 18,
+        teacher: { uuid: "teacher-sarah", name: "Sarah Connor", slug: "sarah-connor" }
+    },
+    "scheduled-stream-1": {
+        uuid: "scheduled-stream-1",
+        title: "Hatha Flow for Flexibility & Relaxation",
+        description: "A calming Hatha flow session to stretch out muscles, improve range of motion, and release daily accumulated tension. Slow-paced with static holds and deep stretching.",
+        category: "Hatha Flow",
+        thumbnail_url: null,
+        status: "scheduled",
+        is_free: false,
+        price: "12.50",
+        scheduled_at: new Date(Date.now() + 172800000).toISOString(),
+        purchases_count: 9,
+        teacher: { uuid: "teacher-arjun", name: "Arjun Mehta", slug: "arjun-mehta" }
+    },
+    "scheduled-stream-2": {
+        uuid: "scheduled-stream-2",
+        title: "Ashtanga Yoga Primary Series Introduction",
+        description: "Introduction to the sequence and structure of Ashtanga primary series. Focus on Bandhas, Drishti, and Ujjayi breath. Dynamic, sweaty, and structured.",
+        category: "Ashtanga",
+        thumbnail_url: null,
+        status: "scheduled",
+        is_free: true,
+        price: "0.00",
+        scheduled_at: new Date(Date.now() + 86400000).toISOString(),
+        purchases_count: 132,
+        teacher: { uuid: "teacher-david", name: "David Swenson", slug: "david-swenson" }
+    },
+    "ended-stream-1": {
+        uuid: "ended-stream-1",
+        title: "Yin Yoga: Deep Joint Opening & Mindfulness",
+        description: "Recorded restorative session holding passive poses for longer periods to target connective tissues and cultivate mindfulness.\n\nYin yoga is a slow-paced style of yoga as exercise, incorporating principles of traditional Chinese medicine, with asanas that are held for longer periods of time than in other styles.",
+        category: "Yin Yoga",
+        thumbnail_url: null,
+        status: "ended",
+        is_free: false,
+        price: "18.00",
+        recording_price: "15.00",
+        recording_url: "https://example.com/recording.mp4",
+        scheduled_at: new Date(Date.now() - 86400000 * 2).toISOString(),
+        purchases_count: 56,
+        teacher: { uuid: "teacher-arjun", name: "Arjun Mehta", slug: "arjun-mehta" }
+    },
+    "ended-stream-2": {
+        uuid: "ended-stream-2",
+        title: "Chakra Meditation for Inner Balance",
+        description: "Guidance on focusing energy along the spine, clearing blockages, and aligning the 7 chakras for peace and clarity.",
+        category: "Meditation",
+        thumbnail_url: null,
+        status: "ended",
+        is_free: true,
+        price: "0.00",
+        recording_price: "0.00",
+        recording_url: "https://example.com/recording.mp4",
+        scheduled_at: new Date(Date.now() - 86400000 * 5).toISOString(),
+        purchases_count: 245,
+        teacher: { uuid: "teacher-david", name: "David Swenson", slug: "david-swenson" }
+    }
+};

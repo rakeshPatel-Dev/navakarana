@@ -46,13 +46,13 @@ export default function WatchPage() {
   const isRecording = uuid && uuid.startsWith("ended-");
 
   return (
-    <div className="bg-stone-900 text-stone-100 min-h-screen flex flex-col h-screen overflow-hidden">
+    <div className="bg-card text-foreground min-h-screen flex flex-col h-screen overflow-hidden">
       {/* Top Header Row */}
-      <div className="bg-stone-950 border-b border-stone-850 px-4 py-3 flex items-center justify-between shrink-0">
+      <div className="bg-background border-b border-border px-4 py-3 flex items-center justify-between shrink-0">
         <div className="flex items-center gap-3">
           <Link
             to={`/streams/${uuid || "live-stream-1"}`}
-            className="text-stone-400 hover:text-stone-100 transition-colors p-1 rounded-lg hover:bg-stone-900"
+            className="text-muted-foreground hover:text-foreground transition-colors p-1 rounded-lg hover:bg-card"
           >
             <RiArrowLeftLine className="size-5" />
           </Link>
@@ -60,13 +60,13 @@ export default function WatchPage() {
             <h1 className="text-sm font-bold truncate max-w-60 md:max-w-md">
               Navakarana Yoga Vinyasa: Strength and Alignment
             </h1>
-            <p className="text-[10px] text-stone-500">Instructor: Arjun Mehta</p>
+            <p className="text-[10px] text-muted-foreground">Instructor: Arjun Mehta</p>
           </div>
         </div>
 
         <div>
           {isRecording ? (
-            <span className="bg-stone-800 text-stone-300 px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider">
+            <span className="bg-card text-muted-foreground px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider">
               🎥 Recording
             </span>
           ) : (
@@ -88,28 +88,28 @@ export default function WatchPage() {
             <motion.button
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.95 }}
-              className="mx-auto w-16 h-16 bg-white/10 hover:bg-white/20 border border-white/20 rounded-full flex items-center justify-center cursor-pointer transition-all shadow-xl backdrop-blur-sm"
+              className="mx-auto w-16 h-16 bg-background/10 hover:bg-background/20 border border-white/20 rounded-full flex items-center justify-center cursor-pointer transition-all shadow-xl backdrop-blur-sm"
             >
-              <RiPlayCircleLine className="size-10 text-white" />
+              <RiPlayCircleLine className="size-10 text-foreground" />
             </motion.button>
             <div>
               <p className="text-sm font-semibold">Yoga Class Player</p>
-              <p className="text-xs text-stone-500 mt-1">
+              <p className="text-xs text-muted-foreground mt-1">
                 {isRecording ? "Click play to start recording playback" : "Class room initialized. Waiting for the instructor to go live..."}
               </p>
             </div>
           </div>
 
           {/* Audio/Video overlay controls indicator */}
-          <div className="absolute bottom-4 left-4 z-20 text-[10px] text-stone-600 bg-stone-950/80 px-2 py-1 rounded border border-stone-850">
+          <div className="absolute bottom-4 left-4 z-20 text-[10px] text-muted-foreground bg-background/80 px-2 py-1 rounded border border-border">
             {isRecording ? "REPLAY MODE" : "LIVE CLASS CONNECTED"}
           </div>
         </div>
 
         {/* Right Side: Chat Panel (30%) */}
-        <div className="w-full md:w-80 lg:w-96 border-t md:border-t-0 md:border-l border-stone-850 bg-stone-950 flex flex-col shrink-0 overflow-hidden h-75 md:h-auto">
+        <div className="w-full md:w-80 lg:w-96 border-t md:border-t-0 md:border-l border-border bg-background flex flex-col shrink-0 overflow-hidden h-75 md:h-auto">
           {/* Chat Header */}
-          <div className="px-4 py-3 border-b border-stone-850 flex items-center gap-2 bg-stone-950 shrink-0 text-stone-200">
+          <div className="px-4 py-3 border-b border-border flex items-center gap-2 bg-background shrink-0 text-foreground">
             <RiQuestionAnswerLine className="text-brand size-4" />
             <h2 className="text-xs font-bold uppercase tracking-wider">Class Chat</h2>
           </div>
@@ -122,9 +122,9 @@ export default function WatchPage() {
                   <span className={`font-bold ${msg.name.includes("Teacher") ? "text-brand" : "text-stone-300"}`}>
                     {msg.name}
                   </span>
-                  <span className="text-[9px] text-stone-600">{msg.time}</span>
+                  <span className="text-[9px] text-muted-foreground">{msg.time}</span>
                 </div>
-                <p className="text-stone-400 wrap-break-word leading-relaxed">{msg.text}</p>
+                <p className="text-muted-foreground wrap-break-word leading-relaxed">{msg.text}</p>
               </div>
             ))}
             <div ref={chatEndRef} />
@@ -133,21 +133,21 @@ export default function WatchPage() {
           {/* Input box */}
           <form
             onSubmit={handleSendMessage}
-            className="p-3 bg-stone-950 border-t border-stone-850 flex gap-2 items-center shrink-0"
+            className="p-3 bg-background border-t border-border flex gap-2 items-center shrink-0"
           >
             <Input
               type="text"
               placeholder="Share a question or intention..."
               value={inputText}
               onChange={(e) => setInputText(e.target.value)}
-              className="bg-stone-900 border-stone-800 text-stone-100 placeholder:text-stone-600 text-xs h-9 rounded-xl focus:bg-stone-900/50"
+              className="bg-card border-border text-foreground placeholder:text-muted-foreground text-sm h-11 rounded-xl focus:bg-card/50"
             />
             <Button
               type="submit"
               size="icon"
-              className="bg-brand hover:bg-brand-light size-9 rounded-xl shrink-0 cursor-pointer text-white"
+              className="bg-brand hover:bg-brand-light size-11 rounded-xl shrink-0 cursor-pointer text-white"
             >
-              <RiSendPlaneLine className="size-4" />
+              <RiSendPlaneLine className="size-5" />
             </Button>
           </form>
         </div>

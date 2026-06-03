@@ -32,23 +32,23 @@ export default function TeacherUnlockPage() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-stone-50 px-4 py-12 relative overflow-hidden">
+    <div className="min-h-screen flex items-center justify-center bg-background px-4 py-12 relative overflow-hidden">
       {/* Background Blobs */}
       <div className="absolute -top-24 -left-24 w-96 h-96 bg-brand/5 blob-shape pointer-events-none" />
-      <div className="absolute -bottom-24 -right-24 w-96 h-96 bg-stone-200/50 blob-shape-2 pointer-events-none" />
+      <div className="absolute -bottom-24 -right-24 w-96 h-96 bg-muted/50 blob-shape-2 pointer-events-none" />
 
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="w-full max-w-md bg-white border border-stone-100 p-8 rounded-4xl shadow-xl shadow-stone-200/50 z-10 text-center space-y-6"
+        className="w-full max-w-md bg-background border border-border p-8 rounded-4xl shadow-xl shadow-stone-200/50 z-10 text-center space-y-6"
       >
         <div className="size-16 bg-brand/5 text-brand rounded-3xl flex items-center justify-center mx-auto text-3xl shadow-sm border border-brand/5">
           <RiLockPasswordLine />
         </div>
 
         <div className="space-y-2">
-          <h2 className="text-2xl font-black text-stone-900 leading-tight">Unlock Your Teacher Dashboard</h2>
-          <p className="text-stone-500 text-sm max-w-sm mx-auto">
+          <h2 className="text-2xl font-black text-foreground leading-tight">Unlock Your Teacher Dashboard</h2>
+          <p className="text-muted-foreground text-sm max-w-sm mx-auto">
             Get instant access to scheduling live yoga classes, selling class recordings, tracking student purchases, and customizing your channel.
           </p>
         </div>
@@ -64,7 +64,7 @@ export default function TeacherUnlockPage() {
         ) : (
           <div className="space-y-4 pt-2">
             {/* Features summary list */}
-            <div className="text-left text-xs text-stone-600 space-y-2.5 bg-stone-50 p-4 rounded-2xl border border-stone-100">
+            <div className="text-left text-xs text-muted-foreground space-y-2.5 bg-background p-4 rounded-2xl border border-border">
               <div className="flex items-center gap-2">
                 <RiCheckboxCircleLine className="text-brand size-4 shrink-0" />
                 <span>Host high-definition live classes with real-time chat.</span>
@@ -87,16 +87,16 @@ export default function TeacherUnlockPage() {
                 <Button
                   onClick={handleUnlock}
                   disabled={loading}
-                  className="w-full h-11 bg-stone-900 hover:bg-stone-850 text-white font-bold rounded-xl shadow-md cursor-pointer"
+                  className="w-full h-11 bg-card hover:bg-card text-foreground font-bold rounded-xl shadow-md cursor-pointer"
                 >
                   {loading ? "Authorizing..." : "Initialize Free Dashboard Access"}
                 </Button>
               </div>
             ) : (
               <div className="space-y-4">
-                <div className="flex justify-between items-baseline border-b border-stone-100 pb-3">
-                  <span className="text-stone-500 text-sm font-semibold">One-time Registration Fee</span>
-                  <span className="text-3xl font-black text-stone-900">$49.00</span>
+                <div className="flex justify-between items-baseline border-b border-border pb-3">
+                  <span className="text-muted-foreground text-sm font-semibold">One-time Registration Fee</span>
+                  <span className="text-3xl font-black text-foreground">$49.00</span>
                 </div>
 
                 <Button
@@ -112,7 +112,7 @@ export default function TeacherUnlockPage() {
         )}
 
         <div className="text-center pt-2">
-          <Link to="/" className="text-xs text-stone-400 hover:text-stone-600 transition-colors font-medium">
+          <Link to="/" className="text-xs text-muted-foreground hover:text-muted-foreground transition-colors font-medium">
             Back to Public Homepage
           </Link>
         </div>

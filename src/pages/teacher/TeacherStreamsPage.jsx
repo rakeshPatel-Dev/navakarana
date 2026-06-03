@@ -219,12 +219,12 @@ export default function TeacherStreamsPage() {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-stone-200/60 pb-5">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-border/60 pb-5">
         <div>
-          <h1 className="text-2xl md:text-3xl font-extrabold text-stone-900 flex items-center gap-2">
+          <h1 className="text-2xl md:text-3xl font-extrabold text-foreground flex items-center gap-2">
             <RiVideoLine /> My Classes
           </h1>
-          <p className="text-stone-500 text-xs mt-1">Configure classes, manage scheduled dates, and broadcast live sessions.</p>
+          <p className="text-muted-foreground text-xs mt-1">Configure classes, manage scheduled dates, and broadcast live sessions.</p>
         </div>
 
         <Button
@@ -236,11 +236,11 @@ export default function TeacherStreamsPage() {
       </div>
 
       {/* Stream List Table */}
-      <div className="bg-white border border-stone-100 rounded-3xl shadow-sm overflow-hidden">
+      <div className="bg-background border border-border rounded-3xl shadow-sm overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full text-left border-collapse text-xs">
             <thead>
-              <tr className="bg-stone-50 text-stone-500 font-bold border-b border-stone-100">
+              <tr className="bg-background text-muted-foreground font-bold border-b border-border">
                 <th className="p-4">Title / Category</th>
                 <th className="p-4">Status</th>
                 <th className="p-4">Admission</th>
@@ -250,11 +250,11 @@ export default function TeacherStreamsPage() {
             </thead>
             <tbody className="divide-y divide-stone-100">
               {streams.map((stream) => (
-                <tr key={stream.uuid} className="hover:bg-stone-50/50 transition-colors">
+                <tr key={stream.uuid} className="hover:bg-background/50 transition-colors">
                   <td className="p-4 max-w-xs md:max-w-sm">
                     <div className="space-y-0.5">
-                      <p className="font-bold text-stone-850 truncate">{stream.title}</p>
-                      <span className="text-[10px] text-stone-400 font-semibold uppercase">{stream.category || "General"}</span>
+                      <p className="font-bold text-foreground truncate">{stream.title}</p>
+                      <span className="text-[10px] text-muted-foreground font-semibold uppercase">{stream.category || "General"}</span>
                     </div>
                   </td>
                   <td className="p-4">
@@ -271,13 +271,13 @@ export default function TeacherStreamsPage() {
                       </Badge>
                     )}
                     {stream.status === "ended" && (
-                      <Badge className="bg-stone-100 text-stone-600 border-stone-200 rounded-md font-bold px-2 py-0.5">
+                      <Badge className="bg-muted text-muted-foreground border-border rounded-md font-bold px-2 py-0.5">
                         <BiVideoRecording className="w-3 h-3 mr-1" />
                          ENDED
                       </Badge>
                     )}
                     {stream.status === "draft" && (
-                      <Badge className="bg-stone-100 text-stone-500 border-stone-200 rounded-md font-semibold px-2 py-0.5">
+                      <Badge className="bg-muted text-muted-foreground border-border rounded-md font-semibold px-2 py-0.5">
                         <RiDraftLine className="w-3 h-3 mr-1" />
                         DRAFT
                       </Badge>
@@ -293,10 +293,10 @@ export default function TeacherStreamsPage() {
                     {stream.is_free ? (
                       <span className="text-emerald-600">FREE</span>
                     ) : (
-                      <span className="text-stone-800">${stream.price}</span>
+                      <span className="text-foreground">${stream.price}</span>
                     )}
                   </td>
-                  <td className="p-4 text-stone-500 font-medium">
+                  <td className="p-4 text-muted-foreground font-medium">
                     {stream.scheduled_at
                       ? new Date(stream.scheduled_at).toLocaleString()
                       : "—"}
@@ -318,7 +318,7 @@ export default function TeacherStreamsPage() {
                     <Button
                       onClick={() => handleOpenEdit(stream)}
                       variant="outline"
-                      className="border-stone-200 hover:bg-stone-50 text-stone-600 size-7 rounded-lg cursor-pointer"
+                      className="border-border hover:bg-background text-muted-foreground size-7 rounded-lg cursor-pointer"
                       title="Edit details"
                       size="icon"
                     >
@@ -358,12 +358,12 @@ export default function TeacherStreamsPage() {
 
       {/* Create / Edit Form Dialog */}
       <Dialog open={formOpen} onOpenChange={setFormOpen}>
-        <DialogContent className="max-w-md bg-white p-6 rounded-3xl border border-stone-100 shadow-xl text-stone-900">
+        <DialogContent className="max-w-md bg-background p-6 rounded-3xl border border-border shadow-xl text-foreground">
           <DialogHeader>
             <DialogTitle className="text-lg font-bold">
               {editingStream ? "Edit Class Details" : "Create New Yoga Class"}
             </DialogTitle>
-            <DialogDescription className="text-xs text-stone-400 mt-1">
+            <DialogDescription className="text-xs text-muted-foreground mt-1">
               Provide the class details, schedules, and fee rates for the class.
             </DialogDescription>
           </DialogHeader>
@@ -372,60 +372,60 @@ export default function TeacherStreamsPage() {
 
           <form onSubmit={handleSaveStream} className="space-y-4 pt-2">
             <div className="space-y-1.5">
-              <Label htmlFor="title" className="text-stone-700 font-semibold text-xs">Class Title *</Label>
+              <Label htmlFor="title" className="text-foreground font-semibold text-xs">Class Title *</Label>
               <Input
                 id="title"
                 placeholder="e.g. Intermediate Hatha alignment flow"
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
-                className="h-10 bg-stone-50 border-stone-200 focus:bg-white rounded-xl text-xs"
+                className="text-sm"
               />
             </div>
 
             <div className="space-y-1.5">
-              <Label htmlFor="desc" className="text-stone-700 font-semibold text-xs">Description</Label>
+              <Label htmlFor="desc" className="text-foreground font-semibold text-xs">Description</Label>
               <Textarea
                 id="desc"
                 placeholder="Curriculum syllabus breakdown..."
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
-                className="bg-stone-50 border-stone-200 focus:bg-white rounded-xl min-h-20 text-xs"
+                className="min-h-24 text-sm"
               />
             </div>
 
             <div className="grid grid-cols-2 gap-4">
               <div className="space-y-1.5">
-                <Label htmlFor="category" className="text-stone-700 font-semibold text-xs">Category</Label>
+                <Label htmlFor="category" className="text-foreground font-semibold text-xs">Category</Label>
                 <Input
                   id="category"
                   placeholder="e.g. Vinyasa"
                   value={category}
                   onChange={(e) => setCategory(e.target.value)}
-                  className="h-10 bg-stone-50 border-stone-200 focus:bg-white rounded-xl text-xs"
+                  className="text-sm"
                 />
               </div>
 
               <div className="space-y-1.5">
-                <Label htmlFor="thumbnail" className="text-stone-700 font-semibold text-xs">Thumbnail URL</Label>
+                <Label htmlFor="thumbnail" className="text-foreground font-semibold text-xs">Thumbnail URL</Label>
                 <Input
                   id="thumbnail"
                   type="url"
                   placeholder="https://image.com/mat.jpg"
                   value={thumbnailUrl}
                   onChange={(e) => setThumbnailUrl(e.target.value)}
-                  className="h-10 bg-stone-50 border-stone-200 focus:bg-white rounded-xl text-xs"
+                  className="text-sm"
                 />
               </div>
             </div>
 
             {/* Price section toggle */}
-            <div className="space-y-2 border-t border-stone-100 pt-3">
+            <div className="space-y-2 border-t border-border pt-3">
               <div className="flex items-center justify-between">
-                <Label className="text-stone-750 font-semibold text-xs flex items-center gap-1.5">
+                <Label className="text-foreground font-semibold text-xs flex items-center gap-1.5">
                   {isFree ? <RiLockUnlockLine className="text-emerald-600" /> : <RiLockLine className="text-brand" />}
                   Class Access Cost
                 </Label>
-                <div className="flex gap-2 bg-stone-100 p-0.5 rounded-lg text-[10px] font-bold">
+                <div className="flex gap-2 bg-muted p-0.5 rounded-lg text-[10px] font-bold">
                   <button
                     type="button"
                     onClick={() => setIsFree(true)}
@@ -447,7 +447,7 @@ export default function TeacherStreamsPage() {
 
               {!isFree && (
                 <div className="space-y-1.5">
-                  <Label htmlFor="price" className="text-stone-700 font-semibold text-xs">Price ($)</Label>
+                  <Label htmlFor="price" className="text-foreground font-semibold text-xs">Price ($)</Label>
                   <Input
                     id="price"
                     type="number"
@@ -457,22 +457,22 @@ export default function TeacherStreamsPage() {
                     placeholder="e.g. 15.00"
                     value={price}
                     onChange={(e) => setPrice(e.target.value)}
-                    className="h-10 bg-stone-50 border-stone-200 focus:bg-white rounded-xl text-xs"
+                    className="text-sm"
                   />
                 </div>
               )}
             </div>
 
-            <div className="space-y-1.5 border-t border-stone-100 pt-3">
-              <Label htmlFor="scheduled" className="text-stone-750 font-semibold text-xs flex items-center gap-1.5">
-                <RiCalendarTodoLine className="text-stone-500" /> Date & Time (Optional)
+            <div className="space-y-1.5 border-t border-border pt-3">
+              <Label htmlFor="scheduled" className="text-foreground font-semibold text-xs flex items-center gap-1.5">
+                <RiCalendarTodoLine className="text-muted-foreground" /> Date & Time (Optional)
               </Label>
               <Input
                 id="scheduled"
                 type="datetime-local"
                 value={scheduledAt}
                 onChange={(e) => setScheduledAt(e.target.value)}
-                className="h-10 bg-stone-50 border-stone-200 focus:bg-white rounded-xl text-xs text-stone-700"
+                className="text-sm text-foreground"
               />
             </div>
 
@@ -481,13 +481,13 @@ export default function TeacherStreamsPage() {
                 type="button"
                 variant="ghost"
                 onClick={() => setFormOpen(false)}
-                className="hover:bg-stone-50 font-semibold rounded-xl text-xs"
+                className="hover:bg-muted font-semibold rounded-2xl h-12 px-6 text-sm transition-colors"
               >
                 Cancel
               </Button>
               <Button
                 type="submit"
-                className="bg-brand hover:bg-brand-light text-white font-bold rounded-xl text-xs cursor-pointer px-4"
+                className="bg-brand hover:bg-brand-light text-white font-bold rounded-2xl h-12 px-6 text-sm cursor-pointer shadow-md shadow-brand/10 transition-colors"
               >
                 Save Session
               </Button>
@@ -507,7 +507,7 @@ export default function TeacherStreamsPage() {
 
       {/* Go Live Streaming Modal */}
       <Dialog open={goLiveOpen} onOpenChange={setGoLiveOpen}>
-        <DialogContent className="max-w-md bg-stone-950 p-6 rounded-3xl border border-stone-900 shadow-2xl text-stone-100">
+        <DialogContent className="max-w-md bg-background p-6 rounded-3xl border border-border shadow-2xl text-foreground">
           <DialogHeader>
             <DialogTitle className="text-stone-250 font-extrabold text-base flex items-center gap-2">
               <span className={`w-2.5 h-2.5 rounded-full ${liveInitialized ? "bg-red-600 animate-pulse" : "bg-stone-500"}`} />
@@ -519,7 +519,7 @@ export default function TeacherStreamsPage() {
           </DialogHeader>
 
           {/* Simulated Web Camera Area */}
-          <div className="aspect-video w-full rounded-2xl bg-black border border-stone-900 relative overflow-hidden flex flex-col items-center justify-center p-6 text-center">
+          <div className="aspect-video w-full rounded-2xl bg-black border border-border relative overflow-hidden flex flex-col items-center justify-center p-6 text-center">
             {liveInitialized ? (
               <motion.div
                 initial={{ opacity: 0 }}
@@ -530,16 +530,16 @@ export default function TeacherStreamsPage() {
                   <RiBroadcastLine />
                 </div>
                 <p className="text-xs font-bold text-red-400 uppercase tracking-widest">TRANSMISSION ACTIVE</p>
-                <p className="text-[10px] text-stone-500">Camera & audio source feeding correctly.</p>
+                <p className="text-[10px] text-muted-foreground">Camera & audio source feeding correctly.</p>
               </motion.div>
             ) : (
               <div className="space-y-2">
-                <div className="flex justify-center gap-3 text-stone-700 text-2xl">
+                <div className="flex justify-center gap-3 text-foreground text-2xl">
                   <RiCameraLine />
                   <RiMicLine />
                 </div>
-                <p className="text-xs font-bold text-stone-400">Class Connection Offline</p>
-                <p className="text-[10px] text-stone-600">Ensure microphone and video permissions are enabled.</p>
+                <p className="text-xs font-bold text-muted-foreground">Class Connection Offline</p>
+                <p className="text-[10px] text-muted-foreground">Ensure microphone and video permissions are enabled.</p>
               </div>
             )}
           </div>
@@ -557,7 +557,7 @@ export default function TeacherStreamsPage() {
                 <Button
                   onClick={() => setGoLiveOpen(false)}
                   variant="ghost"
-                  className="hover:bg-stone-900 text-stone-400 font-semibold rounded-xl text-xs"
+                  className="hover:bg-card text-muted-foreground font-semibold rounded-xl text-xs"
                 >
                   Cancel
                 </Button>

@@ -53,7 +53,7 @@ export default function TeacherDashboardPage() {
             style={{ backgroundSize: "16px 16px" }}
           />
           <div className="flex items-center gap-3">
-            <span className="w-3 h-3 bg-white rounded-full animate-ping shrink-0" />
+            <span className="w-3 h-3 bg-background rounded-full animate-ping shrink-0" />
             <div>
               <p className="text-[10px] font-bold tracking-widest uppercase text-red-100">Class Status: Live</p>
               <h3 className="font-extrabold text-sm md:text-base leading-tight mt-0.5">{liveStream.title}</h3>
@@ -62,7 +62,7 @@ export default function TeacherDashboardPage() {
 
           <Button
             onClick={() => navigate(`/watch/${liveStream.uuid}`)}
-            className="bg-white hover:bg-stone-100 text-red-700 font-bold h-9 rounded-xl px-4 cursor-pointer self-start md:self-auto shadow-sm"
+            className="bg-background hover:bg-muted text-red-700 font-bold h-9 rounded-xl px-4 cursor-pointer self-start md:self-auto shadow-sm"
           >
             Open Live Player
           </Button>
@@ -70,16 +70,16 @@ export default function TeacherDashboardPage() {
       )}
 
       {/* Welcome Row */}
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-stone-200/60 pb-5">
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-border/60 pb-5">
         <div>
-          <h1 className="text-2xl md:text-3xl font-extrabold text-stone-900">Welcome back, Arjun Mehta</h1>
-          <p className="text-stone-500 text-xs mt-1">Here is the active summary of your yoga teaching dashboard.</p>
+          <h1 className="text-2xl md:text-3xl font-extrabold text-foreground">Welcome back, Arjun Mehta</h1>
+          <p className="text-muted-foreground text-xs mt-1">Here is the active summary of your yoga teaching dashboard.</p>
         </div>
 
         <div className="flex items-center gap-2">
           <Link
             to="/channel/arjun-mehta"
-            className="inline-flex items-center gap-1.5 text-stone-600 hover:text-brand font-semibold text-xs transition-colors hover:underline"
+            className="inline-flex items-center gap-1.5 text-muted-foreground hover:text-brand font-semibold text-xs transition-colors hover:underline"
           >
             Go to My Channel <RiArrowRightUpLine />
           </Link>
@@ -89,17 +89,17 @@ export default function TeacherDashboardPage() {
       {/* Stats Row */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
         {[
-          { label: "Total Classes", value: "18", icon: <RiVideoLine className="text-stone-600" /> },
-          { label: "Upcoming Booked Classes", value: "2", icon: <RiCalendarEventLine className="text-stone-600" /> },
-          { label: "Total Admissions / Purchases", value: "107", icon: <RiShoppingBag3Line className="text-stone-600" /> }
+          { label: "Total Classes", value: "18", icon: <RiVideoLine className="text-muted-foreground" /> },
+          { label: "Upcoming Booked Classes", value: "2", icon: <RiCalendarEventLine className="text-muted-foreground" /> },
+          { label: "Total Admissions / Purchases", value: "107", icon: <RiShoppingBag3Line className="text-muted-foreground" /> }
         ].map((stat, idx) => (
-          <div key={idx} className="bg-white border border-stone-100 p-5 rounded-3xl shadow-sm flex items-center gap-4">
-            <div className="size-11 bg-stone-50 rounded-2xl flex items-center justify-center border border-stone-100 shrink-0">
+          <div key={idx} className="bg-background border border-border p-5 rounded-3xl shadow-sm flex items-center gap-4">
+            <div className="size-11 bg-background rounded-2xl flex items-center justify-center border border-border shrink-0">
               {stat.icon}
             </div>
             <div>
-              <p className="text-stone-400 text-[10px] font-bold uppercase tracking-wider">{stat.label}</p>
-              <h3 className="text-2xl font-black text-stone-900 mt-0.5">{stat.value}</h3>
+              <p className="text-muted-foreground text-[10px] font-bold uppercase tracking-wider">{stat.label}</p>
+              <h3 className="text-2xl font-black text-foreground mt-0.5">{stat.value}</h3>
             </div>
           </div>
         ))}
@@ -108,9 +108,9 @@ export default function TeacherDashboardPage() {
       {/* Two Columns Section */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Left Side: Recent Classes (66%) */}
-        <div className="lg:col-span-2 bg-white border border-stone-100 p-6 rounded-3xl shadow-sm space-y-4">
-          <div className="flex justify-between items-center border-b border-stone-100 pb-3">
-            <h2 className="font-extrabold text-stone-900 text-sm uppercase tracking-wider">Recent Classes</h2>
+        <div className="lg:col-span-2 bg-background border border-border p-6 rounded-3xl shadow-sm space-y-4">
+          <div className="flex justify-between items-center border-b border-border pb-3">
+            <h2 className="font-extrabold text-foreground text-sm uppercase tracking-wider">Recent Classes</h2>
             <Link to="/teacher/streams" className="text-xs text-brand font-bold hover:underline">Manage All</Link>
           </div>
 
@@ -118,7 +118,7 @@ export default function TeacherDashboardPage() {
             {streams.map((stream) => (
               <div key={stream.uuid} className="py-3 flex items-center justify-between gap-4 first:pt-0 last:pb-0">
                 <div className="space-y-0.5">
-                  <h4 className="font-bold text-stone-900 text-xs leading-snug">{stream.title}</h4>
+                  <h4 className="font-bold text-foreground text-xs leading-snug">{stream.title}</h4>
                   <p className="text-[10px] text-stone-450">{stream.date} • {stream.category}</p>
                 </div>
 
@@ -134,7 +134,7 @@ export default function TeacherDashboardPage() {
                     </Badge>
                   )}
                   {stream.status === "ended" && (
-                    <Badge className="bg-stone-100 text-stone-600 hover:bg-stone-100 border-stone-200 text-[9px] font-bold rounded-md px-1.5 py-0.5">
+                    <Badge className="bg-muted text-muted-foreground hover:bg-muted border-border text-[9px] font-bold rounded-md px-1.5 py-0.5">
                       RECORDING
                     </Badge>
                   )}
@@ -145,8 +145,8 @@ export default function TeacherDashboardPage() {
         </div>
 
         {/* Right Side: Quick Actions Panel (33%) */}
-        <div className="bg-white border border-stone-100 p-6 rounded-3xl shadow-sm space-y-4 h-fit">
-          <h3 className="font-extrabold text-stone-900 text-sm uppercase tracking-wider border-b border-stone-100 pb-3">
+        <div className="bg-background border border-border p-6 rounded-3xl shadow-sm space-y-4 h-fit">
+          <h3 className="font-extrabold text-foreground text-sm uppercase tracking-wider border-b border-border pb-3">
             Quick Controls
           </h3>
 
@@ -163,7 +163,7 @@ export default function TeacherDashboardPage() {
             <Button
               asChild
               variant="outline"
-              className="w-full h-11 border-stone-200 hover:bg-stone-50 text-stone-750 font-bold rounded-xl gap-2 cursor-pointer justify-start px-4 text-xs"
+              className="w-full h-11 border-border hover:bg-background text-foreground font-bold rounded-xl gap-2 cursor-pointer justify-start px-4 text-xs"
             >
               <Link to="/teacher/streams">
                 <RiBroadcastLine /> Go Live / Teach
