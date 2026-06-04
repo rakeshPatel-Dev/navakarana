@@ -6,6 +6,7 @@ import Teachers from "./Teachers";
 import Testimonials from "./Testimonials";
 import CTA from "./CTA";
 import StreamShow from "./StreamShow";
+import CustomMat from "./CustomMat";
 
 export default function LandingPage() {
   return (
@@ -13,6 +14,7 @@ export default function LandingPage() {
       <Hero />
       <StreamShow/>
       <Stats />
+      <CustomMat/>
       <Features />
       <HowItWorks />
       <Teachers />
