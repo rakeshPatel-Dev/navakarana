@@ -1,11 +1,12 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { RiLiveLine, RiMenuLine, RiCloseLine } from "react-icons/ri";
+import { RiLiveLine, RiMenuLine } from "react-icons/ri";
 import { useState, useEffect } from "react";
 import headerData from "./data/headerData";
 import { Separator } from "@/components/ui/separator";
 import { Link } from "react-router-dom";
 import { AnimatedThemeToggler } from "@/components/ui/animated-theme-toggler";
+import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
@@ -85,55 +86,81 @@ export default function Header() {
             {headerData.cta.label}
           </Link>
         </div>
-
-        {/* Mobile toggle */}
-        <Button
-          variant="ghost"
-          size="icon"
-          className="md:hidden rounded-xl"
-          onClick={() => setMobileOpen(!mobileOpen)}
-          aria-label="Toggle menu"
-        >
-          {mobileOpen ? <RiCloseLine size={22} /> : <RiMenuLine size={22} />}
-        </Button>
-      </div>
-
-      {/* Mobile Menu */}
-      {mobileOpen && (
-        <motion.div
-          initial={{ opacity: 0, y: -8 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -8 }}
-          className="md:hidden bg-background border-t border-border px-6 py-4 flex flex-col gap-2"
-        >
-          {headerData.nav.map((item) => (
-            <Link
-              key={item.label}
-              to={item.href}
-              className="text-sm font-medium text-foreground py-2 border-b border-border"
-            >
-              {item.label}
-            </Link>
-          ))}
-          <div className="flex gap-3 mt-2">
-            {headerData.auth.map((item) => (
-              <Link
-                key={item.label}
-                to={item.href}
-                className="text-sm font-medium text-muted-foreground"
+{/* Mobile toggle & Sheet */}
+        <div className="md:hidden flex items-center gap-2">
+          <AnimatedThemeToggler className="text-muted-foreground mr-1" />
+          <Sheet open={mobileOpen} onOpenChange={setMobileOpen}>
+            <SheetTrigger asChild>
+              <Button
+                variant="ghost"
+                size="icon"
+                className="rounded-xl"
+                aria-label="Toggle menu"
               >
-                {item.label}
-              </Link>
-            ))}
-            <Link
-              to={headerData.cta.href}
-              className="ml-auto inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full text-sm font-semibold bg-brand text-white"
-            >
-              {headerData.cta.label}
-            </Link>
-          </div>
-        </motion.div>
-      )}
+                <RiMenuLine size={22} />
+              </Button>
+            </SheetTrigger>
+            <SheetContent side="right" className="w-75 sm:w-90 p-6 flex flex-col justify-between border-l border-border/80 bg-background/95 backdrop-blur-md">
+              <div className="flex flex-col gap-6">
+                <SheetHeader className="p-0 flex flex-row items-center gap-2.5">
+                  <img src={headerData.logo.src} alt={headerData.logo.alt} className="w-8 h-8 rounded-xl" />
+                  <SheetTitle className="text-lg font-bold text-foreground">
+                    {headerData.platformName}
+                  </SheetTitle>
+                </SheetHeader>
+                
+                <nav className="flex flex-col gap-1.5 mt-4">
+                  {headerData.nav.map((item) => (
+                    <Link
+                      key={item.label}
+                      to={item.href}
+                      onClick={() => setMobileOpen(false)}
+                      className="px-4 py-3 text-sm font-semibold text-foreground hover:text-brand hover:bg-brand/5 dark:hover:bg-brand/10 rounded-xl transition-all duration-200"
+                    >
+                      {item.label}
+                    </Link>
+                  ))}
+                  {headerData.protected.map((item) => (
+                    <Link
+                      key={item.label}
+                      to={item.href}
+                      onClick={() => setMobileOpen(false)}
+                      className="px-4 py-3 text-sm font-semibold text-foreground hover:text-brand hover:bg-brand/5 dark:hover:bg-brand/10 rounded-xl transition-all duration-200"
+                    >
+                      {item.label}
+                    </Link>
+                  ))}
+                </nav>
+              </div>
+              <div className="flex flex-col gap-4 border-t border-border/40 pt-6">
+                <div className="flex items-center justify-between px-2">
+                  <span className="text-xs text-muted-foreground font-medium">Authentication</span>
+                </div>
+                <div className="flex flex-col gap-2">
+                  {headerData.auth.map((item) => (
+                    <Link
+                      key={item.label}
+                      to={item.href}
+                      onClick={() => setMobileOpen(false)}
+                      className="w-full text-center py-2.5 rounded-full text-sm font-semibold text-muted-foreground hover:text-foreground border border-border/60 hover:border-border hover:bg-muted/50 transition-colors"
+                    >
+                      {item.label}
+                    </Link>
+                  ))}
+                  <Link
+                    to={headerData.cta.href}
+                    onClick={() => setMobileOpen(false)}
+                    className="w-full inline-flex items-center justify-center gap-1.5 px-4 py-3 rounded-full text-sm font-semibold bg-brand text-white hover:bg-brand-light transition-colors shadow-sm shadow-brand/20 mt-1"
+                  >
+                    <RiLiveLine className="text-xs" />
+                    {headerData.cta.label}
+                  </Link>
+                </div>
+              </div>
+            </SheetContent>
+          </Sheet>
+        </div>
+      </div>
     </motion.header>
   );
 }
